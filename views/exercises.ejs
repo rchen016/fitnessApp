@@ -1,0 +1,31 @@
+<% include partials/header %>
+
+<div class="container">
+	<header class="jumbotron">
+		<h1>Exercises Page</h1>
+		<p>
+			Bacon ipsum dolor amet pork chop sirloin bacon, ham hock meatball
+			shoulder jowl alcatra filet mignon flank leberkas picanha pork rump
+			burgdoggen.
+		</p>
+		<p>
+			<a class="btn btn-primary btn-lg" href="exercises/new"> Add New Exercise</a>
+		</p>
+	</header>
+	<div class="row text-center" style="display:flex; flex-wrap: wrap;">
+		<% exercises.forEach(function(exercise){ %>
+			<div class="col-md-3 col-sm-6">
+				<div>
+					<figure class="figure">
+						<img class="figure-img img-fluid rounded" src="<%= exercise.image %>">
+						<figcaption class="figure-caption">
+							<%= exercise.name %>
+						</figcaption>
+					</figure>
+				</div>
+			</div>
+		<% }); %>
+	</div>
+</div>
+
+<% include partials/footer %>
