@@ -68,7 +68,8 @@ app.post("/exercises", function(req,res){
 	//get data to create new array
 	var exName = req.body.name;
 	var exImageURL = req.body.image;
-	var newExercise = {name:exName, image:exImageURL};
+	var exDesc = req.body.description;
+	var newExercise = {name:exName, image:exImageURL, description:exDesc};
 	Exercise.create(newExercise,function(err,newlyCreated){
 		if(err){
 			console.log(err);

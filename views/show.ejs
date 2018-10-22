@@ -1,5 +1,9 @@
-<h1> Show Template </h1>
+<% include partials/header %>
 
+<h1> <%= exercise.name %> </h1>
+<img src="<%= exercise.image %>">
 <p>
-	<%= exercise.name %> </p>
+	<%= exercise.description %>
 </p>
+
+<% include partials/footer %>
