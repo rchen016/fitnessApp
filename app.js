@@ -20,16 +20,19 @@ var exercises = [
 //Schema
 var exerciseSchema = new mongoose.Schema({
 	name: String,
-	image: String
+	image: String,
+	description: String
 });
 
 var Exercise = mongoose.model("Exercise", exerciseSchema);
-//
+
 // Exercise.create(
 // 	{
 // 		name: "Deadlift",
-// 		image:"https://images.unsplash.com/photo-1521804906057-1df8fdb718b7?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=f831342881cb6ff58e50698c7f9432de&auto=format&fit=crop&w=1350&q=80"
-// 	},function(err, exercise){
+// 		image:"https://images.unsplash.com/photo-1521804906057-1df8fdb718b7?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=f831342881cb6ff58e50698c7f9432de&auto=format&fit=crop&w=1350&q=80",
+// 		description: "This is someone deadlifting"
+// 	},
+// 	function(err, exercise){
 // 		if(err){
 // 			console.log(err);
 // 		}
@@ -41,10 +44,12 @@ var Exercise = mongoose.model("Exercise", exerciseSchema);
 app.use(bodyParser.urlencoded({extended:true}));
 app.set("view engine","ejs");
 
+//Landing page
 app.get("/",function(req,res){
 	res.render("landing");
 });
 
+//Exercise Page
 app.get("/exercises", function(req,res){
 	//render and pass array to exercise page
 	Exercise.find({}, function(err,allExercises){
@@ -52,12 +57,13 @@ app.get("/exercises", function(req,res){
 			console.log(err);
 		}
 		else{
-			res.render("exercises",{exercises:allExercises});
+			res.render("index",{exercises:allExercises});
 		}
 	})
 	//res.render("exercises",{exercises});
 });
 
+//Create new Exercise
 app.post("/exercises", function(req,res){
 	//get data to create new array
 	var exName = req.body.name;
@@ -73,8 +79,21 @@ app.post("/exercises", function(req,res){
 	});
 });
 
+//Create new Excercise Form
 app.get("/exercises/new",function(req,res){
-	res.render("new.ejs");
+	res.render("new");
+});
+
+//Exercise details
+app.get("/exercises/:id",function(req,res){
+	Exercise.findById(req.params.id, function(err, foundExercise){
+		if(err){
+			console.log(err);
+		}
+		else{
+			res.render("show",{exercise:foundExercise});
+		}
+	});
 });
 
 app.listen(3000, process.env.IP,function(){
