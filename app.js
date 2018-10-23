@@ -3,14 +3,58 @@ var express    = require("express"),
     bodyParser = require("body-parser"),
 	mongoose   = require("mongoose"),
 	seedDB     = require("./seeds"),
-	Note   = require("./models/note"),
+	Note       = require("./models/note"),
+	passport   = require("passport"),
+	LocalStrategy = require("passport-local"),
+	User   = require("./models/user"),
+	path       = require("path"),
 	Exercise   = require("./models/exercise");
 
 mongoose.connect("mongodb://localhost/exercise_app");
 
 app.use(bodyParser.urlencoded({extended:true}));
 app.set("view engine","ejs");
+app.use(express.static(path.join(__dirname, 'public')));
 seedDB();
+//=================================
+//Auth Setup with builtin fucntions
+//=================================
+
+app.use(require("express-session")({
+	secret: "testtesttest",
+	resave: false,
+	saveUninitialized: false
+}));
+
+app.use(passport.initialize());
+app.use(passport.session());
+passport.use(new LocalStrategy(User.authenticate()));
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
+
+//============
+//Auth Routes
+//============
+//render register page
+app.get("/register",function(req,res){
+	res.render("register");
+});
+
+//Signup
+app.post("/register",function(req,res){
+	var newUser = new User({username: req.body.username});
+	User.register(newUser, req.body.password,function(err, user){
+		if(err){
+			console.log(err);
+			return res.render("register");
+		}
+		else{
+			passport.authenticate("local")(req, res, function(){
+				res.redirect("/exercises");
+			});
+		}
+	});
+});
 
 //===============
 //Exercise Routes

@@ -5,7 +5,7 @@ var Note   = require("./models/note");
 var data = [
     {
         name: "Pullup",
-        image: "https://images.unsplash.com/photo-1526506118085-60ce8714f8c5?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=34ca004a9cd0ce1144e94460a9f5e79b&auto=format&fit=crop&w=634&q=80",
+        image: "https://images.unsplash.com/photo-1502955717682-d0430000b16d?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=236c89f91fc7c19d03a6b07dc12ae652&auto=format&fit=crop&w=750&q=80",
         description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum"
     },
     {
