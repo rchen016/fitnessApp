@@ -56,6 +56,24 @@ app.post("/register",function(req,res){
 	});
 });
 
+//Login
+app.get("/login",function(req,res){
+	res.render("login");
+});
+//Login authenication with middleware
+app.post("/login", passport.authenticate("local",
+	{
+		successRedirect: "/exercises",
+		failureRedirect: "/login"
+	}),function(req,res){
+});
+
+//Logout
+app.get("/logout",function(req,res){
+	req.logout();
+	res.redirect("/exercises");
+});
+
 //===============
 //Exercise Routes
 //===============
@@ -116,7 +134,7 @@ app.get("/exercises/:id",function(req,res){
 //Notes Routes
 //============
 //Notes Creatin Form
-app.get("/exercises/:id/notes/new",function(req,res){
+app.get("/exercises/:id/notes/new", isLoggedIn , function(req,res){
 	Exercise.findById(req.params.id,function(err, foundExercise){
 		if(err){
 			console.log(err);
@@ -128,7 +146,7 @@ app.get("/exercises/:id/notes/new",function(req,res){
 });
 
 //Create new Note
-app.post("/exercises/:id/notes", function(req,res){
+app.post("/exercises/:id/notes", isLoggedIn, function(req,res){
 	//get data to create new array
 	Exercise.findById(req.params.id,function(err, foundExercise){
 		if(err){
@@ -150,6 +168,15 @@ app.post("/exercises/:id/notes", function(req,res){
 	});
 
 });
+
+function isLoggedIn(req,res,next){
+	if(req.isAuthenticated()){
+		return next();
+	}
+	else{
+		res.redirect("/login");
+	}
+}
 
 app.listen(3000, process.env.IP,function(){
 	console.log("Welcome to Fitness App");
