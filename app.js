@@ -1,9 +1,14 @@
 var express    = require("express"),
     app        = express(),
     bodyParser = require("body-parser"),
-	mongoose   = require("mongoose");
+	mongoose   = require("mongoose"),
+	seedDB     = require("./seeds"),
+	Note   = require("./models/note"),
+	Exercise   = require("./models/exercise");
 
 mongoose.connect("mongodb://localhost/exercise_app");
+
+
 var exercises = [
 	{name: "Pullup", image:"https://images.unsplash.com/photo-1526506118085-60ce8714f8c5?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=34ca004a9cd0ce1144e94460a9f5e79b&auto=format&fit=crop&w=634&q=80"},
 	{name: "Deadlift", image:"https://images.unsplash.com/photo-1521804906057-1df8fdb718b7?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=f831342881cb6ff58e50698c7f9432de&auto=format&fit=crop&w=1350&q=80"},
@@ -17,33 +22,9 @@ var exercises = [
 	{name: "Jump Rope", image:"https://images.unsplash.com/photo-1520334298038-4182dac472e8?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=76421d3379a2336a878cebe7b9d27ad5&auto=format&fit=crop&w=702&q=80"}
 ];
 
-//Schema
-var exerciseSchema = new mongoose.Schema({
-	name: String,
-	image: String,
-	description: String
-});
-
-var Exercise = mongoose.model("Exercise", exerciseSchema);
-
-// Exercise.create(
-// 	{
-// 		name: "Deadlift",
-// 		image:"https://images.unsplash.com/photo-1521804906057-1df8fdb718b7?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=f831342881cb6ff58e50698c7f9432de&auto=format&fit=crop&w=1350&q=80",
-// 		description: "This is someone deadlifting"
-// 	},
-// 	function(err, exercise){
-// 		if(err){
-// 			console.log(err);
-// 		}
-// 		else{
-// 			console.log(exercise);
-// 		}
-// 	});
-
 app.use(bodyParser.urlencoded({extended:true}));
 app.set("view engine","ejs");
-
+seedDB();
 //Landing page
 app.get("/",function(req,res){
 	res.render("landing");
@@ -87,11 +68,12 @@ app.get("/exercises/new",function(req,res){
 
 //Exercise details
 app.get("/exercises/:id",function(req,res){
-	Exercise.findById(req.params.id, function(err, foundExercise){
+	Exercise.findById(req.params.id).populate("notes").exec(function(err, foundExercise){
 		if(err){
 			console.log(err);
 		}
 		else{
+			console.log(foundExercise);
 			res.render("show",{exercise:foundExercise});
 		}
 	});

@@ -6,4 +6,9 @@
 	<%= exercise.description %>
 </p>
 
+<% exercise.notes.forEach( function(note){ %>
+	<p> <strong><%= note.author %></strong> - <%= note.text %> </p> 
+<% }); %>
+
+
 <% include partials/footer %>
