@@ -16,7 +16,8 @@ var exerciseRoutes  = require("./routes/exercises"),
 	noteRoutes      = require("./routes/notes"),
 	indexRoutes      = require("./routes/index");
 
-mongoose.connect("mongodb://localhost/exercise_app");
+//mongoose.connect("mongodb://localhost/exercise_app");
+mongoose.connect("mongodb://rickychen10:zx1230321@ds141623.mlab.com:41623/exerciseapp");
 
 app.use(bodyParser.urlencoded({extended:true}));
 app.set("view engine","ejs");
