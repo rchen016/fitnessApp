@@ -1,10 +1,11 @@
 var express  = require("express"),
 	Exercise = require("../models/exercise"),
-	Note     = require("../models/note");
+	Note     = require("../models/note"),
+	middleware = require("../middleware");
 var router = express.Router({mergeParams:true});
 
 //Notes Creatin Form
-router.get("/new", isLoggedIn , function(req,res){
+router.get("/new", middleware.isLoggedIn , function(req,res){
 	Exercise.findById(req.params.id,function(err, foundExercise){
 		if(err){
 			console.log(err);
@@ -16,10 +17,11 @@ router.get("/new", isLoggedIn , function(req,res){
 });
 
 //Create new Note
-router.post("/", isLoggedIn, function(req,res){
+router.post("/",  middleware.isLoggedIn, function(req,res){
 	//get data to create new array
 	Exercise.findById(req.params.id,function(err, foundExercise){
 		if(err){
+			req.flash("error","Something is wrong");
 			console.log(err);
 		}
 		else{
@@ -34,6 +36,7 @@ router.post("/", isLoggedIn, function(req,res){
 					newlyCreated.save();
 					foundExercise.notes.push(newlyCreated);
 					foundExercise.save();
+					req.flash("success","Added Note");
 					res.redirect("/exercises/"+foundExercise._id);
 				}
 			});
@@ -43,7 +46,7 @@ router.post("/", isLoggedIn, function(req,res){
 });
 
 //Note Edit
-router.get("/:note_id/edit", checkNoteOwner, function(req,res){
+router.get("/:note_id/edit", middleware.checkNoteOwner, function(req,res){
 	Note.findById(req.params.note_id,function(err,foundNote){
 		if(err){
 			res.redirect("back");
@@ -54,7 +57,7 @@ router.get("/:note_id/edit", checkNoteOwner, function(req,res){
 });
 
 //Note Update
-router.put("/:note_id",checkNoteOwner, function(req,res){
+router.put("/:note_id", middleware.checkNoteOwner, function(req,res){
 	Note.findByIdAndUpdate(req.params.note_id, req.body.note,function(err,updated){
 		if(err){
 			res.redirect("back");
@@ -66,7 +69,7 @@ router.put("/:note_id",checkNoteOwner, function(req,res){
 });
 
 //Note Delete
-router.delete("/:note_id",checkNoteOwner, function(req,res){
+router.delete("/:note_id", middleware.checkNoteOwner, function(req,res){
 	Note.findByIdAndRemove(req.params.note_id,function(err){
 		if(err){
 			res.redirect("back");
@@ -87,26 +90,4 @@ function isLoggedIn(req,res,next){
 	}
 }
 
-function checkNoteOwner(req, res, next){
-	if(req.isAuthenticated()){
-		//render and pass array to exercise page
-		Note.findById(req.params.note_id, function(err,foundNote){
-			if(err){
-				console.log(err);
-				res.redirect("back");
-			}
-			else{
-				if(foundNote.author.id.equals(req.user._id)){
-					next();
-				}
-				else{
-					res.redirect("back");
-				}
-			}
-		});
-	}
-	else{
-		res.redirect("back");
-	}
-}
 module.exports = router;

@@ -1,6 +1,7 @@
 var express  = require("express"),
 	Exercise = require("../models/exercise"),
-	Note     = require("../models/note");
+	Note     = require("../models/note"),
+	middleware = require("../middleware");
 var router = express.Router();
 
 //Exercise Page
@@ -17,7 +18,7 @@ router.get("/", function(req,res){
 });
 
 //Create new Exercise
-router.post("/", isLoggedIn, function(req,res){
+router.post("/", middleware.isLoggedIn, function(req,res){
 	//get data to create new array
 	var exName = req.body.name;
 	var exImageURL = req.body.image;
@@ -38,7 +39,7 @@ router.post("/", isLoggedIn, function(req,res){
 });
 
 //Create new Excercise Form
-router.get("/new", isLoggedIn, function(req,res){
+router.get("/new", middleware.isLoggedIn, function(req,res){
 	res.render("exercises/new");
 });
 
@@ -56,7 +57,7 @@ router.get("/:id",function(req,res){
 });
 
 //Edit Exercise
-router.get("/:id/edit", checkOwner, function(req,res){
+router.get("/:id/edit", middleware.checkOwner, function(req,res){
 	//render and pass array to exercise page
 	Exercise.findById(req.params.id, function(err,foundExercise){
 		res.render("exercises/edit",{exercise:foundExercise});
@@ -64,7 +65,7 @@ router.get("/:id/edit", checkOwner, function(req,res){
 });
 
 //Update Exercise
-router.put("/:id",checkOwner, function(req,res){
+router.put("/:id",middleware.checkOwner, function(req,res){
 	Exercise.findByIdAndUpdate(req.params.id,req.body.exercise,function(err, updatedExercise){
 		if(err){
 			res.redirect("/exercises");
@@ -76,7 +77,7 @@ router.put("/:id",checkOwner, function(req,res){
 });
 
 //Delte Exercise
-router.delete("/:id", checkOwner, function(req,res){
+router.delete("/:id", middleware.checkOwner, function(req,res){
 	Exercise.findByIdAndRemove(req.params.id,function(err){
 		if(err){
 			res.redirect("/exercises");
@@ -87,36 +88,4 @@ router.delete("/:id", checkOwner, function(req,res){
 	});
 });
 
-//middleware
-function isLoggedIn(req,res,next){
-	if(req.isAuthenticated()){
-		return next();
-	}
-	else{
-		res.redirect("/login");
-	}
-}
-
-function checkOwner(req, res, next){
-	if(req.isAuthenticated()){
-		//render and pass array to exercise page
-		Exercise.findById(req.params.id, function(err,foundExercise){
-			if(err){
-				console.log(err);
-				res.redirect("back");
-			}
-			else{
-				if(foundExercise.author.id.equals(req.user._id)){
-					next();
-				}
-				else{
-					res.redirect("back");
-				}
-			}
-		});
-	}
-	else{
-		res.redirect("back");
-	}
-}
 module.exports = router;

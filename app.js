@@ -9,6 +9,7 @@ var express        = require("express"),
 	User           = require("./models/user"),
 	path           = require("path"),
 	methodOverride = require("method-override"),
+	flash          = require("connect-flash"),
 	Exercise       = require("./models/exercise");
 
 var exerciseRoutes  = require("./routes/exercises"),
@@ -21,6 +22,7 @@ app.use(bodyParser.urlencoded({extended:true}));
 app.set("view engine","ejs");
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(methodOverride("_method"));
+app.use(flash());
 //seedDB();
 //=================================
 //Auth Setup with builtin fucntions
@@ -40,6 +42,8 @@ passport.deserializeUser(User.deserializeUser());
 
 app.use(function(req,res,next){
 	res.locals.currentUser = req.user;
+	res.locals.error = req.flash("error");
+	res.locals.success = req.flash("success");
 	next();
 });
 
