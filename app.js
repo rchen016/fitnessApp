@@ -1,14 +1,15 @@
-var express       = require("express"),
-    app           = express(),
-    bodyParser    = require("body-parser"),
-	mongoose      = require("mongoose"),
-	seedDB        = require("./seeds"),
-	Note          = require("./models/note"),
-	passport      = require("passport"),
-	LocalStrategy = require("passport-local"),
-	User          = require("./models/user"),
-	path          = require("path"),
-	Exercise      = require("./models/exercise");
+var express        = require("express"),
+    app            = express(),
+    bodyParser     = require("body-parser"),
+	mongoose       = require("mongoose"),
+	seedDB         = require("./seeds"),
+	Note           = require("./models/note"),
+	passport       = require("passport"),
+	LocalStrategy  = require("passport-local"),
+	User           = require("./models/user"),
+	path           = require("path"),
+	methodOverride = require("method-override"),
+	Exercise       = require("./models/exercise");
 
 var exerciseRoutes  = require("./routes/exercises"),
 	noteRoutes      = require("./routes/notes"),
@@ -19,7 +20,8 @@ mongoose.connect("mongodb://localhost/exercise_app");
 app.use(bodyParser.urlencoded({extended:true}));
 app.set("view engine","ejs");
 app.use(express.static(path.join(__dirname, 'public')));
-seedDB();
+app.use(methodOverride("_method"));
+//seedDB();
 //=================================
 //Auth Setup with builtin fucntions
 //=================================

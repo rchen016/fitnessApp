@@ -14,16 +14,19 @@ router.get("/", function(req,res){
 			res.render("exercises/index",{exercises:allExercises});
 		}
 	})
-	//res.render("exercises",{exercises});
 });
 
 //Create new Exercise
-router.post("/", function(req,res){
+router.post("/", isLoggedIn, function(req,res){
 	//get data to create new array
 	var exName = req.body.name;
 	var exImageURL = req.body.image;
 	var exDesc = req.body.description;
-	var newExercise = {name:exName, image:exImageURL, description:exDesc};
+	var author = {
+		id: req.user._id,
+		username: req.user.username
+	}
+	var newExercise = {name:exName, image:exImageURL, description:exDesc, author:author};
 	Exercise.create(newExercise,function(err,newlyCreated){
 		if(err){
 			console.log(err);
@@ -35,8 +38,8 @@ router.post("/", function(req,res){
 });
 
 //Create new Excercise Form
-router.get("/new",function(req,res){
-	res.render("new");
+router.get("/new", isLoggedIn, function(req,res){
+	res.render("exercises/new");
 });
 
 //Exercise details
@@ -51,6 +54,12 @@ router.get("/:id",function(req,res){
 		}
 	});
 });
+
+//Edit Exercise
+
+
+//Update Exercise
+
 
 function isLoggedIn(req,res,next){
 	if(req.isAuthenticated()){

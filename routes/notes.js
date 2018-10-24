@@ -29,6 +29,9 @@ router.post("/", isLoggedIn, function(req,res){
 					res.redirect("/exercises");
 				}
 				else{
+					newlyCreated.author.id = req.user._id;
+					newlyCreated.author.username = req.user.username;
+					newlyCreated.save();
 					foundExercise.notes.push(newlyCreated);
 					foundExercise.save();
 					res.redirect("/exercises/"+foundExercise._id);

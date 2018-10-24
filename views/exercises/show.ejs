@@ -19,21 +19,6 @@
 			</div>
 		</div>
 		<div class="col-md-9">
-			<!-- <div class="img-thumbnail">
-				<img class="img-responsive" src="<%= exercise.image %>">
-				<h1> <%= exercise.name %> </h1>
-				<p> <%= exercise.description %> </p>
-			</div>
-			<div class="card bg-faded">
-				<div class="text-right card-block">
-					<a class="btn btn-success btn-lg" href="/exercises/<%= exercise._id %>/notes/new">Add New Note</a>
-				</div>
-				<div>
-					<% exercise.notes.forEach( function(note){ %>
-						<p> <strong><%= note.author %></strong> - <%= note.text %> </p>
-					<% }); %>
-				</div>
-			</div> -->
 			<div class="card">
 				<img class="card-img-top" src="<%= exercise.image %>" alt="Card image cap">
 				<div class="card-body">
@@ -45,7 +30,7 @@
 					<a class="btn btn-success btn-lg" href="/exercises/<%= exercise._id %>/notes/new">Add New Note</a>
 					<p>
 						<% exercise.notes.forEach( function(note){ %>
-							<p> <strong><%= note.author %></strong> - <%= note.text %> </p>
+							<p> <strong><%= note.author.username %></strong> - <%= note.text %> </p>
 						<% }); %>
 					</p>
 				</div>

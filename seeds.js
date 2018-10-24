@@ -26,37 +26,37 @@ function seedDB(){
         if(err){
             console.log(err);
         }
-        console.log("removed exercises!");
-        Note.remove({}, function(err) {
-            if(err){
-                console.log(err);
-            }
-            console.log("removed note!");
-             //add a few campgrounds
-            data.forEach(function(seed){
-                Exercise.create(seed, function(err, exercise){
-                    if(err){
-                        console.log(err)
-                    } else {
-                        console.log("added a exercises");
-                        //create a comment
-                        Note.create(
-                            {
-                                text: "This place is great, but I wish there was internet",
-                                author: "Homer"
-                            }, function(err, note){
-                                if(err){
-                                    console.log(err);
-                                } else {
-                                    exercise.notes.push(note);
-                                    exercise.save();
-                                    console.log("Created new note");
-                                }
-                            });
-                    }
-                });
-            });
-        });
+        // console.log("removed exercises!");
+        // Note.remove({}, function(err) {
+        //     if(err){
+        //         console.log(err);
+        //     }
+        //     console.log("removed note!");
+        //      //add a few campgrounds
+        //     data.forEach(function(seed){
+        //         Exercise.create(seed, function(err, exercise){
+        //             if(err){
+        //                 console.log(err)
+        //             } else {
+        //                 console.log("added a exercises");
+        //                 //create a comment
+        //                 Note.create(
+        //                     {
+        //                         text: "This place is great, but I wish there was internet",
+        //                         author: "Homer"
+        //                     }, function(err, note){
+        //                         if(err){
+        //                             console.log(err);
+        //                         } else {
+        //                             exercise.notes.push(note);
+        //                             exercise.save();
+        //                             console.log("Created new note");
+        //                         }
+        //                     });
+        //             }
+        //         });
+        //     });
+        // });
     });
     //add a few comments
 }
