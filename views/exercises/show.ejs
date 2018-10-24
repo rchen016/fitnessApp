@@ -36,8 +36,11 @@
 					<a class="btn btn-success btn-lg" href="/exercises/<%= exercise._id %>/notes/new">Add New Note</a>
 					<p>
 						<% exercise.notes.forEach( function(note){ %>
-							<p> <strong><%= note.author.username %></strong></p>
-							<p> <%= note.text %> </p>
+
+							<%	if(note.author.username === (currentUser.username)){%>
+								<p> <strong><%= note.author.username %></strong></p>
+								<p> <%= note.text %> </p>
+							<%	}%>
 							<% if(currentUser && note.author.id.equals(currentUser._id)){ %>
 								<a class="btn btn-xs btn-warning"
 								   href="/exercises/<%= exercise._id %>/notes/<%= note._id %>/edit">

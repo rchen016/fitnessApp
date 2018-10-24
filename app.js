@@ -16,15 +16,9 @@ var exerciseRoutes  = require("./routes/exercises"),
 	noteRoutes      = require("./routes/notes"),
 	indexRoutes      = require("./routes/index");
 
+var url = process.env.DATABASEURL || "mongodb://localhost/exercise_app";
+mongoose.connect(url);
 
-
-
-// mongoose.connect("mongodb://localhost/exercise_app");
-mongoose.connect("mongodb://rcrc:zx1230321@ds141623.mlab.com:41623/exerciseapp");
-// var databaseUri = "mongodb://rcrc:zx1230321@ds141623.mlab.com:41623/exerciseapp";
-// mongoose.connect(databaseUri, {  })
-//       .then(() => console.log(`Database connected at ${databaseUri}`))
-//       .catch(err => console.log(`Database connection error: ${err.message}`));
 app.use(bodyParser.urlencoded({extended:true}));
 app.set("view engine","ejs");
 app.use(express.static(path.join(__dirname, 'public')));
