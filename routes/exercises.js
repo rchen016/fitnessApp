@@ -56,27 +56,15 @@ router.get("/:id",function(req,res){
 });
 
 //Edit Exercise
-router.get("/:id/edit", function(req,res){
-	//Make sure user is logged in.
-	if(req.isAuthenticated()){
-		//render and pass array to exercise page
-		Exercise.findById(req.params.id, function(err,foundExercise){
-			if(err){
-				console.log(err);
-				res.redirect("/exercises");
-			}
-			else{
-				res.render("exercises/edit",{exercise:foundExercise});
-			}
-		});
-	}
-	else{
-		console.log("Login");
-	}
+router.get("/:id/edit", checkOwner, function(req,res){
+	//render and pass array to exercise page
+	Exercise.findById(req.params.id, function(err,foundExercise){
+		res.render("exercises/edit",{exercise:foundExercise});
+	});
 });
 
 //Update Exercise
-router.put("/:id",function(req,res){
+router.put("/:id",checkOwner, function(req,res){
 	Exercise.findByIdAndUpdate(req.params.id,req.body.exercise,function(err, updatedExercise){
 		if(err){
 			res.redirect("/exercises");
@@ -88,7 +76,7 @@ router.put("/:id",function(req,res){
 });
 
 //Delte Exercise
-router.delete("/:id", function(req,res){
+router.delete("/:id", checkOwner, function(req,res){
 	Exercise.findByIdAndRemove(req.params.id,function(err){
 		if(err){
 			res.redirect("/exercises");
@@ -99,7 +87,7 @@ router.delete("/:id", function(req,res){
 	});
 });
 
-
+//middleware
 function isLoggedIn(req,res,next){
 	if(req.isAuthenticated()){
 		return next();
@@ -109,4 +97,26 @@ function isLoggedIn(req,res,next){
 	}
 }
 
+function checkOwner(req, res, next){
+	if(req.isAuthenticated()){
+		//render and pass array to exercise page
+		Exercise.findById(req.params.id, function(err,foundExercise){
+			if(err){
+				console.log(err);
+				res.redirect("back");
+			}
+			else{
+				if(foundExercise.author.id.equals(req.user._id)){
+					next();
+				}
+				else{
+					res.redirect("back");
+				}
+			}
+		});
+	}
+	else{
+		res.redirect("back");
+	}
+}
 module.exports = router;

@@ -1,11 +1,11 @@
 <% include ../partials/header %>
 
 <div class="container">
-		<h1 style="text-align:center;">Add New Note to <%= exercise.name %></h1>
+		<h1 style="text-align:center;">Edit Note</h1>
 			<div style="width:30%; margin:25px auto;">
-				<form action="/exercises/<%= exercise._id %>/notes" method="POST">
+				<form action="/exercises/<%= exercise_id %>/notes/<%= note.id %>?_method=put" method="POST">
 					<div class="form-group">
-						<input class="form-control" type="text" name="note[text]" placeholder="text" />
+						<input class="form-control" type="text" name="note[text]" value="<%= note.text %>" />
 					</div>
 					<div class="form-group">
 						<button class="btn btn-lg btn-primary btn-block">Submit</button>

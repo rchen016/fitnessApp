@@ -24,17 +24,29 @@
 				<div class="card-body">
 					<h5 class="card-title"><%= exercise.name %></h5>
 					<p class="card-text"><%= exercise.description %></p>
-					<a class="btn btn-warning btn-lg" href="/exercises/<%= exercise._id %>/edit">Edit</a>
-					<form id="delete-form" action="/exercises/<%= exercise._id %>?_method=DELETE" method="POST">
-						<button class="btn btn-danger btn-lg">Delete</button>
-					</form>
+					<% if(currentUser && exercise.author.id.equals(currentUser._id)){ %>
+						<a class="btn btn-warning btn-lg" href="/exercises/<%= exercise._id %>/edit">Edit</a>
+						<form id="delete-form" action="/exercises/<%= exercise._id %>?_method=DELETE" method="POST">
+							<button class="btn btn-danger btn-lg">Delete</button>
+						</form>
+					<% } %>
 				</div>
 
 				<div class="card-header">
 					<a class="btn btn-success btn-lg" href="/exercises/<%= exercise._id %>/notes/new">Add New Note</a>
 					<p>
 						<% exercise.notes.forEach( function(note){ %>
-							<p> <strong><%= note.author.username %></strong> - <%= note.text %> </p>
+							<p> <strong><%= note.author.username %></strong></p>
+							<p> <%= note.text %> </p>
+							<% if(currentUser && note.author.id.equals(currentUser._id)){ %>
+								<a class="btn btn-xs btn-warning"
+								   href="/exercises/<%= exercise._id %>/notes/<%= note._id %>/edit">
+								   Edit
+							   </a>
+								<form id="comment-delete-form" action="/exercises/<%= exercise._id %>/notes/<%= note._id %>?_method=DELETE" method="POST">
+									<button class="btn btn-danger btn-xs">Delete</button>
+								</form>
+							<% } %>
 						<% }); %>
 					</p>
 				</div>
