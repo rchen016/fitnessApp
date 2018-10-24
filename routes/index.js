@@ -6,7 +6,7 @@ var router = express.Router();
 
 //Landing page
 router.get("/",function(req,res){
-	res.redirect("/exercises");
+	res.render("landing");
 });
 
 //render register page
