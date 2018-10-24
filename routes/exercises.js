@@ -56,9 +56,48 @@ router.get("/:id",function(req,res){
 });
 
 //Edit Exercise
-
+router.get("/:id/edit", function(req,res){
+	//Make sure user is logged in.
+	if(req.isAuthenticated()){
+		//render and pass array to exercise page
+		Exercise.findById(req.params.id, function(err,foundExercise){
+			if(err){
+				console.log(err);
+				res.redirect("/exercises");
+			}
+			else{
+				res.render("exercises/edit",{exercise:foundExercise});
+			}
+		});
+	}
+	else{
+		console.log("Login");
+	}
+});
 
 //Update Exercise
+router.put("/:id",function(req,res){
+	Exercise.findByIdAndUpdate(req.params.id,req.body.exercise,function(err, updatedExercise){
+		if(err){
+			res.redirect("/exercises");
+		}
+		else{
+			res.redirect("/exercises/"+req.params.id);
+		}
+	})
+});
+
+//Delte Exercise
+router.delete("/:id", function(req,res){
+	Exercise.findByIdAndRemove(req.params.id,function(err){
+		if(err){
+			res.redirect("/exercises");
+		}
+		else{
+			res.redirect("/exercises");
+		}
+	});
+});
 
 
 function isLoggedIn(req,res,next){
