@@ -16,9 +16,15 @@ var exerciseRoutes  = require("./routes/exercises"),
 	noteRoutes      = require("./routes/notes"),
 	indexRoutes      = require("./routes/index");
 
-//mongoose.connect("mongodb://localhost/exercise_app");
-mongoose.connect("mongodb://rickychen10:zx1230321@ds141623.mlab.com:41623/exerciseapp");
 
+
+
+// mongoose.connect("mongodb://localhost/exercise_app");
+mongoose.connect("mongodb://rcrc:zx1230321@ds141623.mlab.com:41623/exerciseapp");
+// var databaseUri = "mongodb://rcrc:zx1230321@ds141623.mlab.com:41623/exerciseapp";
+// mongoose.connect(databaseUri, {  })
+//       .then(() => console.log(`Database connected at ${databaseUri}`))
+//       .catch(err => console.log(`Database connection error: ${err.message}`));
 app.use(bodyParser.urlencoded({extended:true}));
 app.set("view engine","ejs");
 app.use(express.static(path.join(__dirname, 'public')));
@@ -53,6 +59,6 @@ app.use("/exercises", exerciseRoutes);
 app.use(indexRoutes);
 app.use("/exercises/:id/notes",noteRoutes);
 
-app.listen(3000, process.env.IP,function(){
-	console.log("Welcome to Fitness App");
+app.listen(process.env.PORT||3000, process.env.IP, function(){
+  console.log("fsdfsdf");
 });
