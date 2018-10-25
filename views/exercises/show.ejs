@@ -34,6 +34,11 @@
 
 				<div class="card-header">
 					<a class="btn btn-success btn-lg" href="/exercises/<%= exercise._id %>/notes/new">Add New Note</a>
+					<% if(currentUser){ %>
+						<form action="/exercises/<%= exercise._id %>/profile" method="POST">
+							<button class="btn btn-danger btn-xs">Save</button>
+						</form>
+					<% } %>
 					<p>
 						<% exercise.notes.forEach( function(note){ %>
 

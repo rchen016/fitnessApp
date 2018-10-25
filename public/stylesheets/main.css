@@ -13,3 +13,11 @@
 #comment-delete-form{
 	display: inline;
 }
+
+.dropdown-menu{
+	right: 0; left: auto;
+}
+
+.mr-sm-2{
+	width: 50vh !important;
+}

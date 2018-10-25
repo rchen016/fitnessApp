@@ -14,6 +14,7 @@ var express        = require("express"),
 
 var exerciseRoutes  = require("./routes/exercises"),
 	noteRoutes      = require("./routes/notes"),
+	profileRoutes   = require("./routes/profile"),
 	indexRoutes      = require("./routes/index");
 
 var url = process.env.DATABASEURL || "mongodb://localhost/exercise_app";
@@ -52,6 +53,7 @@ app.use(function(req,res,next){
 app.use("/exercises", exerciseRoutes);
 app.use(indexRoutes);
 app.use("/exercises/:id/notes",noteRoutes);
+app.use(profileRoutes);
 
 app.listen(process.env.PORT||3000, process.env.IP, function(){
   console.log("fsdfsdf");

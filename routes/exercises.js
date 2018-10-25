@@ -14,7 +14,7 @@ router.get("/", function(req,res){
 		else{
 			res.render("exercises/index",{exercises:allExercises});
 		}
-	})
+	});
 });
 
 //Create new Exercise

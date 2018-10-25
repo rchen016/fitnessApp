@@ -1,9 +1,14 @@
 var mongoose = require("mongoose");
+var Exercise = require("./exercise");
 var passportLocalMongoose = require("passport-local-mongoose");
 
 var UserSchema = new mongoose.Schema({
 	username: String,
-	password: String
+	password: String,
+	savedExercises: {
+		type: Array,
+		"default": [Exercise]
+	}
 });
 
 UserSchema.plugin(passportLocalMongoose);
