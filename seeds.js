@@ -4,8 +4,35 @@ var Note   = require("./models/note");
 
 var data = [
     {
-        name: "Pullup",
-        image: "https://images.unsplash.com/photo-1502955717682-d0430000b16d?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=236c89f91fc7c19d03a6b07dc12ae652&auto=format&fit=crop&w=750&q=80",
+        name: "Bench Press",
+        image: "https://i.imgur.com/CezroNc.png",
+        description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum",
+		author:{
+			id: mongoose.Types.ObjectId('5bd0fffcfcf1502fa478d45e'),
+			username: "admin"
+		}
+    },
+    {
+        name: "Bent-over Row",
+        image: "https://i.imgur.com/EsZHOdL.png",
+        description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum",
+		author:{
+			id: mongoose.Types.ObjectId('5bd0fffcfcf1502fa478d45e'),
+			username: "admin"
+		}
+    },
+    {
+        name: "Biceps Curl",
+        image: "https://i.imgur.com/mKlrdEl.png",
+        description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum",
+		author:{
+			id: mongoose.Types.ObjectId('5bd0fffcfcf1502fa478d45e'),
+			username: "admin"
+		}
+    },
+    {
+        name: "Chest Fly",
+        image: "https://i.imgur.com/bFOoIj2.png",
         description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum",
 		author:{
 			id: mongoose.Types.ObjectId('5bd0fffcfcf1502fa478d45e'),
@@ -14,7 +41,7 @@ var data = [
     },
     {
         name: "Deadlift",
-        image: "https://images.unsplash.com/photo-1521804906057-1df8fdb718b7?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=f831342881cb6ff58e50698c7f9432de&auto=format&fit=crop&w=1350&q=80",
+        image: "https://i.imgur.com/Yvtxpt2.png",
         description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum",
 		author:{
 			id: mongoose.Types.ObjectId('5bd0fffcfcf1502fa478d45e'),
@@ -22,8 +49,8 @@ var data = [
 		}
     },
     {
-        name: "Squats",
-        image: "https://images.unsplash.com/photo-1532382752999-45b3dc5d4bf2?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=a6bfa542aeb80a2ddc9a2753ace99aca&auto=format&fit=crop&w=1350&q=80",
+        name: "Lateral Raise",
+        image: "https://i.imgur.com/OLZPsAm.png",
         description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum",
 		author:{
 			id: mongoose.Types.ObjectId('5bd0fffcfcf1502fa478d45e'),
@@ -31,8 +58,17 @@ var data = [
 		}
     },
     {
-        name: "Erg",
-        image: "https://images.unsplash.com/photo-1519505907962-0a6cb0167c73?ixlib=rb-0.3.5&s=133aed109939be950674cabf03e64f26&auto=format&fit=crop&w=1350&q=80",
+        name: "Leg Curl",
+        image: "https://i.imgur.com/x067i8J.png",
+        description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum",
+		author:{
+			id: mongoose.Types.ObjectId('5bd0fffcfcf1502fa478d45e'),
+			username: "admin"
+		}
+    },
+	{
+        name: "Leg Extension",
+        image: "https://i.imgur.com/1KX8aoz.png",
         description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum",
 		author:{
 			id: mongoose.Types.ObjectId('5bd0fffcfcf1502fa478d45e'),
@@ -40,8 +76,116 @@ var data = [
 		}
     },
     {
-        name: "Jump Rope",
-        image: "https://images.unsplash.com/photo-1520334298038-4182dac472e8?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=76421d3379a2336a878cebe7b9d27ad5&auto=format&fit=crop&w=702&q=80",
+        name: "Lunge",
+        image: "https://i.imgur.com/WIrwyXa.png",
+        description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum",
+		author:{
+			id: mongoose.Types.ObjectId('5bd0fffcfcf1502fa478d45e'),
+			username: "admin"
+		}
+    },
+    {
+        name: "Pull-down",
+        image: "https://i.imgur.com/70weQox.png",
+        description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum",
+		author:{
+			id: mongoose.Types.ObjectId('5bd0fffcfcf1502fa478d45e'),
+			username: "admin"
+		}
+    },
+    {
+        name: "Pull-up",
+        image: "https://i.imgur.com/lSGSrDt.png",
+        description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum",
+		author:{
+			id: mongoose.Types.ObjectId('5bd0fffcfcf1502fa478d45e'),
+			username: "admin"
+		}
+    },
+	{
+        name: "Pushdown",
+        image: "https://i.imgur.com/HYygncx.png",
+        description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum",
+		author:{
+			id: mongoose.Types.ObjectId('5bd0fffcfcf1502fa478d45e'),
+			username: "admin"
+		}
+    },
+    {
+        name: "Push-up",
+        image: "https://i.imgur.com/nrNU10o.png",
+        description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum",
+		author:{
+			id: mongoose.Types.ObjectId('5bd0fffcfcf1502fa478d45e'),
+			username: "admin"
+		}
+    },
+    {
+        name: "Russian Twist",
+        image: "https://i.imgur.com/VZyLCTG.png",
+        description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum",
+		author:{
+			id: mongoose.Types.ObjectId('5bd0fffcfcf1502fa478d45e'),
+			username: "admin"
+		}
+    },
+    {
+        name: "Seated Calf Raise",
+        image: "https://i.imgur.com/JhE9Vmj.png",
+        description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum",
+		author:{
+			id: mongoose.Types.ObjectId('5bd0fffcfcf1502fa478d45e'),
+			username: "admin"
+		}
+    },
+    {
+        name: "Shoulder Fly",
+        image: "https://i.imgur.com/zOoSIuE.png",
+        description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum",
+		author:{
+			id: mongoose.Types.ObjectId('5bd0fffcfcf1502fa478d45e'),
+			username: "admin"
+		}
+    },
+    {
+        name: "Shoulder Press",
+        image: "https://i.imgur.com/fC5a7r8.png",
+        description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum",
+		author:{
+			id: mongoose.Types.ObjectId('5bd0fffcfcf1502fa478d45e'),
+			username: "admin"
+		}
+    },
+	{
+        name: "Shoulder Shrug",
+        image: "https://i.imgur.com/Mdt86BQ.png",
+        description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum",
+		author:{
+			id: mongoose.Types.ObjectId('5bd0fffcfcf1502fa478d45e'),
+			username: "admin"
+		}
+    },
+    {
+        name: "Squat",
+        image: "https://i.imgur.com/aAllOaw.png",
+        description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum",
+		author:{
+			id: mongoose.Types.ObjectId('5bd0fffcfcf1502fa478d45e'),
+			username: "admin"
+		}
+    },
+    {
+        name: "Triceps Extension",
+        image: "https://i.imgur.com/GlwqVVo.png",
+        description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum",
+		author:{
+			id: mongoose.Types.ObjectId('5bd0fffcfcf1502fa478d45e'),
+			username: "admin"
+		}
+    },
+    {
+        name: "Upright Row",
+        image: "https://i.imgur.com/mi6JEVs.png",
         description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum",
 		author:{
 			id: mongoose.Types.ObjectId('5bd0fffcfcf1502fa478d45e'),
@@ -74,20 +218,6 @@ function seedDB(){
             });
         });
     });
-    //add a few comments
 }
 
 module.exports = seedDB;
-
-// var exercises = [
-// 	{name: "Pullup", image:"https://images.unsplash.com/photo-1526506118085-60ce8714f8c5?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=34ca004a9cd0ce1144e94460a9f5e79b&auto=format&fit=crop&w=634&q=80"},
-// 	{name: "Deadlift", image:"https://images.unsplash.com/photo-1521804906057-1df8fdb718b7?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=f831342881cb6ff58e50698c7f9432de&auto=format&fit=crop&w=1350&q=80"},
-// 	{name: "Squats", image:"https://images.unsplash.com/photo-1532382752999-45b3dc5d4bf2?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=a6bfa542aeb80a2ddc9a2753ace99aca&auto=format&fit=crop&w=1350&q=80"},
-// 	{name: "Erg", image:"https://images.unsplash.com/photo-1519505907962-0a6cb0167c73?ixlib=rb-0.3.5&s=133aed109939be950674cabf03e64f26&auto=format&fit=crop&w=1350&q=80"},
-// 	{name: "Jump Rope", image:"https://images.unsplash.com/photo-1520334298038-4182dac472e8?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=76421d3379a2336a878cebe7b9d27ad5&auto=format&fit=crop&w=702&q=80"},
-// 	{name: "Pullup", image:"https://images.unsplash.com/photo-1526506118085-60ce8714f8c5?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=34ca004a9cd0ce1144e94460a9f5e79b&auto=format&fit=crop&w=634&q=80"},
-// 	{name: "Deadlift", image:"https://images.unsplash.com/photo-1521804906057-1df8fdb718b7?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=f831342881cb6ff58e50698c7f9432de&auto=format&fit=crop&w=1350&q=80"},
-// 	{name: "Squats", image:"https://images.unsplash.com/photo-1532382752999-45b3dc5d4bf2?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=a6bfa542aeb80a2ddc9a2753ace99aca&auto=format&fit=crop&w=1350&q=80"},
-// 	{name: "Erg", image:"https://images.unsplash.com/photo-1519505907962-0a6cb0167c73?ixlib=rb-0.3.5&s=133aed109939be950674cabf03e64f26&auto=format&fit=crop&w=1350&q=80"},
-// 	{name: "Jump Rope", image:"https://images.unsplash.com/photo-1520334298038-4182dac472e8?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=76421d3379a2336a878cebe7b9d27ad5&auto=format&fit=crop&w=702&q=80"}
-// ];
