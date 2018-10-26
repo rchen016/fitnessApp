@@ -2,11 +2,11 @@
 
 <div class="container">
 	<header class="jumbotron">
-		<h1>Exercises Page</h1>
+		<h1>Exercises</h1>
 		<p>
-			Bacon ipsum dolor amet pork chop sirloin bacon, ham hock meatball
-			shoulder jowl alcatra filet mignon flank leberkas picanha pork rump
-			burgdoggen.
+			Explore the various exercises. Start with selecting the body part you want to workout
+			and from there, each section will have all the necessary workouts you can add to your
+			profile list to keep track of all your progress.
 		</p>
 		<p>
 			<% if(currentUser && currentUser.username === "admin"){ %>
@@ -19,11 +19,10 @@
 			<div class="col-md-3 col-sm-6">
 				<div>
 					<figure class="figure">
-						<img class="figure-img img-fluid rounded" src="<%= exercise.image %>">
+						<a href="/exercises/<%= exercise._id %>"><img class="mainExImg figure-img img-fluid rounded" src="<%= exercise.image %>"></a>
 						<figcaption class="figure-caption">
 							<%= exercise.name %>
 						</figcaption>
-						<a href="/exercises/<%= exercise._id %>" class="btn btn-primary">Details</a>
 					</figure>
 				</div>
 			</div>

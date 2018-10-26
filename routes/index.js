@@ -14,6 +14,11 @@ router.get("/register",function(req,res){
 	res.render("register");
 });
 
+//render register page
+router.get("/disclaimer",function(req,res){
+	res.render("disclaimer");
+});
+
 //Signup
 router.post("/register",function(req,res){
 	var newUser = new User({username: req.body.username});

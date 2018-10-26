@@ -21,3 +21,7 @@
 .mr-sm-2{
 	width: 50vh !important;
 }
+
+.mainExImg:hover{
+	opacity: .5;
+}

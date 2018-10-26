@@ -4,7 +4,13 @@
 	<div class="row">
 		<div class="col-md-3">
 			<p class="lead">
-				Exercise
+				<%= exercise.name %>
+				<% if(currentUser){ %>
+					<form action="/exercises/<%= exercise._id %>/profile" method="POST">
+						<button class="btn btn-success btn-xs">Save</button>
+					</form>
+				<% } %>
+				<a class="btn btn-secondary btn-xs" href="/exercises/<%= exercise._id %>/notes/new">Add Note</a>
 			</p>
 			<div class="list-group">
 				<li class="list-group-item active">
@@ -33,12 +39,7 @@
 				</div>
 
 				<div class="card-header">
-					<a class="btn btn-success btn-lg" href="/exercises/<%= exercise._id %>/notes/new">Add New Note</a>
-					<% if(currentUser){ %>
-						<form action="/exercises/<%= exercise._id %>/profile" method="POST">
-							<button class="btn btn-danger btn-xs">Save</button>
-						</form>
-					<% } %>
+
 					<p>
 						<% exercise.notes.forEach( function(note){ %>
 

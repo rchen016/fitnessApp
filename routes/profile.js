@@ -21,14 +21,22 @@ router.get("/profile",function(req,res){
 
 //Add Exercise to Profile
 router.post("/exercises/:id/profile",function(req,res){
+	var isUnique = true;
 	Exercise.findById(req.params.id, function(err,foundExercises){
 		if(err){
 			console.log(err);
 		}
 		else{
-			req.user.savedExercises.push(foundExercises);
-			req.user.save();
-			console.log(req.user.savedExercises);
+			//check if exercise already exist in profile array
+			for(var i=0; i<req.user.savedExercises.length; i++){
+				if(req.user.savedExercises[i].name == foundExercises.name){
+					isUnique = false;
+				}
+			}
+			if(isUnique){
+				req.user.savedExercises.push(foundExercises);
+				req.user.save();
+			}
 			res.redirect("/exercises");
 		}
 	});
@@ -42,11 +50,10 @@ router.delete("/exercises/:id/profile", function(req,res){
 		}
 		else{
 			for(var i=0;i<req.user.savedExercises.length;i++){
-				if(foundExercises.name === req.user.savedExercises[i].name){
-					console.log(req.user.savedExercises[i].name);
+				if(foundExercises.name == req.user.savedExercises[i].name){
 					req.user.savedExercises.splice(i,1);
 					req.user.save();
-					res.redirect(req.get('referer'));
+					res.render("profile/index");
 				}
 			}
 		}

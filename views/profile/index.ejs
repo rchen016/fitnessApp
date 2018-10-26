@@ -6,11 +6,10 @@
 			<div class="col-md-3 col-sm-6">
 				<div>
 					<figure class="figure">
-						<img class="figure-img img-fluid rounded" src="<%= exercise.image %>">
+						<a href="/exercises/<%= exercise._id %>"><img class="mainExImg figure-img img-fluid rounded" src="<%= exercise.image %>"></a>
 						<figcaption class="figure-caption">
 							<%= exercise.name %>
 						</figcaption>
-						<a href="/exercises/<%= exercise._id %>" class="btn btn-primary">Details</a>
 						<form action="/exercises/<%= exercise._id %>/profile?_method=DELETE" method="POST">
 							<button class="btn btn-danger btn-xs">Delete</button>
 						</form>
@@ -20,4 +19,5 @@
 		<% }); %>
 	</div>
 </div>
+
 <% include ../partials/footer %>
