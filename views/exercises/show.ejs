@@ -30,7 +30,7 @@
 				<div class="card-body">
 					<h5 class="card-title"><%= exercise.name %></h5>
 					<p class="card-text"><%= exercise.description %></p>
-					<% if(currentUser && exercise.author.username === (currentUser.username)){ %>
+					<% if(currentUser && exercise.author.username === (currentUser.username) && currentUser.toggleEditMode){ %>
 						<a class="btn btn-warning btn-lg" href="/exercises/<%= exercise._id %>/edit">Edit</a>
 						<form id="delete-form" action="/exercises/<%= exercise._id %>?_method=DELETE" method="POST">
 							<button class="btn btn-danger btn-lg">Delete</button>
@@ -47,7 +47,7 @@
 								<p> <strong><%= note.author.username %></strong></p>
 								<p> <%= note.text %> </p>
 							<%	}%>
-							<% if(currentUser && note.author.id.equals(currentUser._id)){ %>
+							<% if(currentUser && note.author.id.equals(currentUser._id) && currentUser.toggleEditMode){ %>
 								<a class="btn btn-xs btn-warning"
 								   href="/exercises/<%= exercise._id %>/notes/<%= note._id %>/edit">
 								   Edit

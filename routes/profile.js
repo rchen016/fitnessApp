@@ -60,4 +60,9 @@ router.delete("/exercises/:id/profile", function(req,res){
 	});
 });
 
+router.get("/toggleEditMode",function(req,res){
+	req.user.toggleEditMode = !req.user.toggleEditMode;
+	req.user.save();
+	res.redirect("/exercises");
+});
 module.exports = router;
