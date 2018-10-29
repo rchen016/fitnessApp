@@ -42,8 +42,7 @@
 
 					<p>
 						<% exercise.notes.forEach( function(note){ %>
-
-							<%	if(note.author.username === (currentUser.username)){%>
+							<%	if(currentUser && note.author.username === (currentUser.username)){%>
 								<p> <strong><%= note.author.username %></strong></p>
 								<p> <%= note.date %> Rep: <%= note.rep %> Set: <%= note.set %> </p>
 							<%	}%>
