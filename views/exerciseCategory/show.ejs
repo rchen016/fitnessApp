@@ -1,0 +1,25 @@
+<% include ../partials/header %>
+
+<div class="container">
+	<div class="row text-center" style="display:flex; flex-wrap: wrap;">
+		<% foundList.exerciseList.forEach(function(exercise){ %>
+			<div class="col-md-3 col-sm-6">
+				<div>
+					<figure class="figure">
+						<a href="/exercises/<%= exercise._id %>"><img class="mainExImg figure-img img-fluid rounded" src="<%= exercise.image %>"></a>
+						<figcaption class="figure-caption">
+							<%= exercise.name %>
+						</figcaption>
+						<% if(currentUser && currentUser.toggleEditMode){ %>
+						<form action="/exercises/<%= exercise._id %>/profile?_method=DELETE" method="POST">
+							<button class="btn btn-danger btn-xs">Delete</button>
+						</form>
+						<%}%>
+					</figure>
+				</div>
+			</div>
+		<% }); %>
+	</div>
+</div>
+
+<% include ../partials/footer %>

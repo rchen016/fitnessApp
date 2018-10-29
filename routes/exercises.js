@@ -45,6 +45,7 @@ router.get("/new", middleware.isLoggedIn, function(req,res){
 
 //Exercise details
 router.get("/:id",function(req,res){
+	console.log("EX Route");
 	Exercise.findById(req.params.id).populate("notes").exec(function(err, foundExercise){
 		if(err){
 			console.log(err);

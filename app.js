@@ -1,21 +1,23 @@
-var express        = require("express"),
-    app            = express(),
-    bodyParser     = require("body-parser"),
-	mongoose       = require("mongoose"),
-	seedDB         = require("./seeds"),
-	Note           = require("./models/note"),
-	passport       = require("passport"),
-	LocalStrategy  = require("passport-local"),
-	User           = require("./models/user"),
-	path           = require("path"),
-	methodOverride = require("method-override"),
-	flash          = require("connect-flash"),
-	Exercise       = require("./models/exercise");
+var express          = require("express"),
+    app              = express(),
+    bodyParser       = require("body-parser"),
+	mongoose         = require("mongoose"),
+	seedDB           = require("./seeds"),
+	Note             = require("./models/note"),
+	passport         = require("passport"),
+	LocalStrategy    = require("passport-local"),
+	User             = require("./models/user"),
+	path             = require("path"),
+	methodOverride   = require("method-override"),
+	flash            = require("connect-flash"),
+	Exercise         = require("./models/exercise"),
+	ExerciseCategory = require("./models/exerciseCategory");
 
-var exerciseRoutes  = require("./routes/exercises"),
-	noteRoutes      = require("./routes/notes"),
-	profileRoutes   = require("./routes/profile"),
-	indexRoutes      = require("./routes/index");
+var exerciseRoutes    = require("./routes/exercises"),
+	noteRoutes        = require("./routes/notes"),
+	profileRoutes     = require("./routes/profile"),
+	indexRoutes       = require("./routes/index"),
+	exerciseCatRoutes = require("./routes/exerciseCategory");
 
 var url = process.env.DATABASEURL || "mongodb://localhost/exercise_app";
 mongoose.connect(url);
@@ -53,8 +55,9 @@ app.use(function(req,res,next){
 app.use("/exercises", exerciseRoutes);
 app.use(indexRoutes);
 app.use("/exercises/:id/notes",noteRoutes);
+app.use(exerciseCatRoutes);
 app.use(profileRoutes);
 
 app.listen(process.env.PORT||3000, process.env.IP, function(){
-  console.log("fsdfsdf");
+  console.log("Server Up...");
 });

@@ -4,6 +4,7 @@ var exerciseSchema = new mongoose.Schema({
 	name: String,
 	image: String,
 	description: String,
+	category: String,
 	author:{
 		id: {
 			type: mongoose.Schema.Types.ObjectId,

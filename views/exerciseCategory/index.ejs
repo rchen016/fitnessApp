@@ -1,0 +1,33 @@
+<% include ../partials/header %>
+
+<div class="container">
+	<header class="jumbotron">
+		<h1>Exercises </h1>
+		<p>
+			Explore the various exercises. Start with selecting the body part you want to workout
+			and from there, each section will have all the necessary workouts you can add to your
+			profile list to keep track of all your progress.
+		</p>
+		<p>
+			<% if(currentUser && currentUser.username === "admin"){ %>
+				<a class="btn btn-primary btn-lg" href="/exercises/new"> Add New Exercise</a>
+			<% } %>
+		</p>
+	</header>
+	<div class="row text-center" style="display:flex; flex-wrap: wrap;">
+		<% foundList.forEach(function(list){ %>
+			<div class="col-md-3 col-sm-6">
+				<div>
+					<figure class="figure">
+						<a href="/exerciseCategory/<%= list._id %>"><img class="mainExImg figure-img img-fluid rounded" src="<%= list.image %>"></a>
+						<figcaption class="figure-caption">
+							<%= list.name %>
+						</figcaption>
+					</figure>
+				</div>
+			</div>
+		<% }); %>
+	</div>
+</div>
+
+<% include ../partials/footer %>
