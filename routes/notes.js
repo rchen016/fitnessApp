@@ -25,10 +25,13 @@ router.post("/",  middleware.isLoggedIn, function(req,res){
 			console.log(err);
 		}
 		else{
-			Note.create(req.body.note,function(err,newlyCreated){
+			var noteRep = req.body.note.rep;
+			var noteSet = req.body.note.set;
+			var noteDate = new Date().toLocaleDateString();
+			Note.create({rep: noteRep, set: noteSet, date: noteDate},function(err,newlyCreated){
 				if(err){
 					console.log(err);
-					res.redirect("/exercises");
+					res.redirect("/exerciseCategory");
 				}
 				else{
 					newlyCreated.author.id = req.user._id;

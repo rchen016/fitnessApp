@@ -1,14 +1,16 @@
 var mongoose = require("mongoose");
 
 var noteSchema = new mongoose.Schema({
-    text: String,
+    rep: String,
+	set: String,
     author: {
 		id:{
 			type: mongoose.Schema.Types.ObjectId,
 			ref: "User"
 		},
 		username: String
-	}
+	},
+	date: String
 });
 
 module.exports = mongoose.model("Note", noteSchema);
