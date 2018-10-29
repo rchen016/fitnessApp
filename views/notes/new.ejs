@@ -3,12 +3,42 @@
 <div class="container">
 		<h1 style="text-align:center;">Add New Note to <%= exercise.name %></h1>
 			<div style="width:30%; margin:25px auto;">
-				<form action="/exercises/<%= exercise._id %>/notes" method="POST">
-					<div class="form-group">
-						<input class="form-control" type="text" name="note[text]" placeholder="text" />
-					</div>
-					<div class="form-group">
-						<button class="btn btn-lg btn-primary btn-block">Submit</button>
+				<form>
+					<div class="form-row align-items-center">
+						<div class="col-auto my-1">
+							<label class="mr-sm-2">Reps: </label>
+							<select class="custom-select mr-sm-2" id="inlineFormCustomSelect">
+								<option selected>Choose...</option>
+								<option value="1">1</option>
+								<option value="2">2</option>
+								<option value="3">3</option>
+								<option value="4">4</option>
+								<option value="5">5</option>
+								<option value="6">6</option>
+								<option value="7">7</option>
+								<option value="8">8</option>
+								<option value="9">9</option>
+								<option value="10">10</option>
+								<option value="11">11</option>
+								<option value="12">12</option>
+								<option value="13">13</option>
+								<option value="14">14</option>
+								<option value="15">15</option>
+								<option value="16">16</option>
+								<option value="17">17</option>
+								<option value="18">18</option>
+								<option value="19">19</option>
+								<option value="20">20</option>
+								<option value="21">21</option>
+								<option value="22">22</option>
+								<option value="23">23</option>
+								<option value="24">24</option>
+								<option value="25">25</option>
+							</select>
+						</div>
+						<div class="col-auto my-1">
+							<button type="submit" class="btn btn-primary">Submit</button>
+						</div>
 					</div>
 				</form>
 				<a href="/exercises">Go Back</a>

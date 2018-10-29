@@ -24,7 +24,8 @@ router.post("/exercises/:id/profile",function(req,res){
 	var isUnique = true;
 	Exercise.findById(req.params.id, function(err,foundExercises){
 		if(err){
-			console.log(err);
+			req.flash("error", "Adding Failed!");
+			return res.render("profile/index");
 		}
 		else{
 			//check if exercise already exist in profile array
@@ -37,7 +38,7 @@ router.post("/exercises/:id/profile",function(req,res){
 				req.user.savedExercises.push(foundExercises);
 				req.user.save();
 			}
-			res.redirect("/exercises");
+			res.redirect("/exerciseCategory");
 		}
 	});
 });
@@ -46,7 +47,8 @@ router.post("/exercises/:id/profile",function(req,res){
 router.delete("/exercises/:id/profile", function(req,res){
 	Exercise.findById(req.params.id, function(err,foundExercises){
 		if(err){
-			console.log(err);
+			req.flash("error", "Deteletion Failed!");
+			return res.render("profile/index");
 		}
 		else{
 			for(var i=0;i<req.user.savedExercises.length;i++){
@@ -63,6 +65,6 @@ router.delete("/exercises/:id/profile", function(req,res){
 router.get("/toggleEditMode",function(req,res){
 	req.user.toggleEditMode = !req.user.toggleEditMode;
 	req.user.save();
-	res.redirect("/exercises");
+	res.redirect("/exerciseCategory");
 });
 module.exports = router;
