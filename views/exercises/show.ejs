@@ -45,7 +45,7 @@
 
 							<%	if(note.author.username === (currentUser.username)){%>
 								<p> <strong><%= note.author.username %></strong></p>
-								<p> <%= note.text %> </p>
+								<p> <%= note.date %> Rep: <%= note.rep %> Set: <%= note.set %> </p>
 							<%	}%>
 							<% if(currentUser && note.author.id.equals(currentUser._id) && currentUser.toggleEditMode){ %>
 								<a class="btn btn-xs btn-warning"

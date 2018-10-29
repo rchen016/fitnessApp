@@ -3,12 +3,11 @@
 <div class="container">
 		<h1 style="text-align:center;">Add New Note to <%= exercise.name %></h1>
 			<div style="width:30%; margin:25px auto;">
-				<form>
+				<form action="/exercises/<%= exercise._id %>/notes " method="POST">
 					<div class="form-row align-items-center">
 						<div class="col-auto my-1">
-							<label class="mr-sm-2">Reps: </label>
-							<select class="custom-select mr-sm-2" id="inlineFormCustomSelect">
-								<option selected>Choose...</option>
+							<select class="custom-select" name="note[rep]" id="inlineFormCustomSelect">
+								<option selected>Rep</option>
 								<option value="1">1</option>
 								<option value="2">2</option>
 								<option value="3">3</option>
@@ -35,13 +34,26 @@
 								<option value="24">24</option>
 								<option value="25">25</option>
 							</select>
+							<select class="custom-select" name="note[set]" id="inlineFormCustomSelect">
+								<option selected>Set</option>
+								<option value="1">1</option>
+								<option value="2">2</option>
+								<option value="3">3</option>
+								<option value="4">4</option>
+								<option value="5">5</option>
+								<option value="6">6</option>
+								<option value="7">7</option>
+								<option value="8">8</option>
+								<option value="9">9</option>
+								<option value="10">10</option>
+							</select>
 						</div>
-						<div class="col-auto my-1">
+						<div class="col-auto">
 							<button type="submit" class="btn btn-primary">Submit</button>
 						</div>
 					</div>
 				</form>
-				<a href="/exercises">Go Back</a>
+				<a href="/exerciseCategory">Go Back</a>
 			</div>
 
 </div>
