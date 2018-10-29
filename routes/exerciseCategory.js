@@ -2,6 +2,7 @@ var express = require("express");
 var ExerciseCategory = require("../models/exerciseCategory");
 var router = express.Router();
 
+//Main Landing Page
 router.get("/exerciseCategory", function(req,res){
 	ExerciseCategory.find({},function(err,foundList){
 		if(err){
@@ -14,7 +15,7 @@ router.get("/exerciseCategory", function(req,res){
 	});
 });
 
-
+//Display all exercises in a given Category
 router.get("/exerciseCategory/:id", function(req,res){
 	console.log("here");
 	ExerciseCategory.findById(req.params.id,function(err,foundList){
@@ -28,6 +29,7 @@ router.get("/exerciseCategory/:id", function(req,res){
 	});
 });
 
+//Exercise Show Page
 router.get("/exerciseCategory/:categoryid/detail/:exid",function(req,res){
 	console.log("EXCat Route");
 	Exercise.findById(req.params.exid).populate("notes").exec(function(err, foundExercise){

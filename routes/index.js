@@ -30,7 +30,7 @@ router.post("/register",function(req,res){
 		else{
 				passport.authenticate("local")(req, res, function(){
 				req.flash("success", "Account Created");
-				res.redirect("/exercises");
+				res.redirect("/exerciseCategory");
 			});
 		}
 	});
@@ -43,7 +43,7 @@ router.get("/login",function(req,res){
 //Login authenication with middleware
 router.post("/login", passport.authenticate("local",
 	{
-		successRedirect: "/exercises",
+		successRedirect: "/exerciseCategory",
 		failureRedirect: "/login"
 	}),function(req,res){
 });
@@ -52,7 +52,7 @@ router.post("/login", passport.authenticate("local",
 router.get("/logout",function(req,res){
 	req.logout();
 	req.flash("success", "Sucessfully Logged Out!");
-	res.redirect("/exercises");
+	res.redirect("/exerciseCategory");
 });
 
 module.exports = router;

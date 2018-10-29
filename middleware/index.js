@@ -35,7 +35,7 @@ middlewareObj.checkOwner = function(req,res,next){
 				res.redirect("back");
 			}
 			else{
-				if(foundExercise.author.id.equals(req.user._id)){
+				if(foundExercise.author.name == (req.user.name)){
 					next();
 				}
 				else{

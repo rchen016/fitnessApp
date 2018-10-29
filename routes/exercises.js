@@ -23,17 +23,18 @@ router.post("/", middleware.isLoggedIn, function(req,res){
 	var exName = req.body.name;
 	var exImageURL = req.body.image;
 	var exDesc = req.body.description;
+	var exCat = req.body.category;
 	var author = {
 		id: req.user._id,
 		username: req.user.username
 	}
-	var newExercise = {name:exName, image:exImageURL, description:exDesc, author:author};
+	var newExercise = {name:exName, image:exImageURL, description:exDesc, category:exCat, author:author};
 	Exercise.create(newExercise,function(err,newlyCreated){
 		if(err){
 			console.log(err);
 		}
 		else{
-			res.redirect("/exercises");
+			res.redirect("/exerciseCategory");
 		}
 	});
 });
@@ -69,7 +70,7 @@ router.get("/:id/edit", middleware.checkOwner, function(req,res){
 router.put("/:id",middleware.checkOwner, function(req,res){
 	Exercise.findByIdAndUpdate(req.params.id,req.body.exercise,function(err, updatedExercise){
 		if(err){
-			res.redirect("/exercises");
+			res.redirect("/exerciseCategory");
 		}
 		else{
 			res.redirect("/exercises/"+req.params.id);
@@ -81,10 +82,10 @@ router.put("/:id",middleware.checkOwner, function(req,res){
 router.delete("/:id", middleware.checkOwner, function(req,res){
 	Exercise.findByIdAndRemove(req.params.id,function(err){
 		if(err){
-			res.redirect("/exercises");
+			res.redirect("/exerciseCategory");
 		}
 		else{
-			res.redirect("/exercises");
+			res.redirect("/exerciseCategory");
 		}
 	});
 });
