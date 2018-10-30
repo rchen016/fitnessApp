@@ -46,25 +46,40 @@
 					<% } %>
 				</div>
 
-				<div class="card-header">
-					<p>
+				<table class="table table-striped">
+					<thead>
+						<tr>
+							<th scope="col">Date</th>
+							<th scope="col">Weight</th>
+							<th scope="col">Rep</th>
+							<th scope="col">Set</th>
+						</tr>
+					</thead>
+					<tbody>
 						<% exercise.notes.forEach( function(note){ %>
 							<%	if(currentUser && note.author.username === (currentUser.username)){%>
-								<p> <strong><%= note.author.username %></strong></p>
-								<p> <%= note.date %> Weight: <%= note.weight %> lbs Rep: <%= note.rep %> Set: <%= note.set %> </p>
-							<%	}%>
-							<% if(currentUser && note.author.id.equals(currentUser._id) && currentUser.toggleEditMode){ %>
-								<a class="btn btn-xs btn-warning"
-								   href="/exercises/<%= exercise._id %>/notes/<%= note._id %>/edit">
-								   Edit
-							   </a>
-								<form id="comment-delete-form" action="/exercises/<%= exercise._id %>/notes/<%= note._id %>?_method=DELETE" method="POST">
-									<button class="btn btn-danger btn-xs">Delete</button>
-								</form>
-							<% } %>
+							<tr>
+								<th scope="row"><%= note.date %></th>
+								<td><%= note.weight %> lbs</td>
+								<td><%= note.rep %></td>
+								<td><%= note.set %></td>
+								<% if(currentUser && note.author.id.equals(currentUser._id) && currentUser.toggleEditMode){ %>
+								<td>
+									<a class="btn btn-xs btn-warning"
+									   href="/exercises/<%= exercise._id %>/notes/<%= note._id %>/edit">
+									   Edit
+								   </a>
+									<form id="comment-delete-form" action="/exercises/<%= exercise._id %>/notes/<%= note._id %>?_method=DELETE" method="POST">
+										<button class="btn btn-danger btn-xs">Delete</button>
+									</form>
+								</td>
+								<% } %>
+							</tr>
+								<%}%>
+
 						<% }); %>
-					</p>
-				</div>
+					</tbody>
+				</table>
 			</div>
 		</div>
 	</div>
