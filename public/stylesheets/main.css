@@ -25,3 +25,11 @@
 .mainExImg:hover{
 	opacity: .5;
 }
+
+#workoutNumForm{
+	display: inline;
+}
+
+#inlineFormCustomSelect{
+	width: 40%;
+}

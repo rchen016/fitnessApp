@@ -19,6 +19,21 @@ router.get("/new", middleware.isLoggedIn , function(req,res){
 //Create new Note
 router.post("/",  middleware.isLoggedIn, function(req,res){
 	//get data to create new array
+	if(req.body.note.set== undefined){
+		req.flash("error", "Please Select Validate Set Number.");
+		res.redirect("/exerciseCategory");
+		return;
+	}
+	if(req.body.note.rep == undefined){
+		req.flash("error", "Please Select Validate Rep Number.");
+		res.redirect("/exerciseCategory");
+		return;
+	}
+	if(req.body.note.weight== ""){
+		req.flash("error", "Please Select Validate Weight Number.");
+		res.redirect("/exerciseCategory");
+		return;
+	}
 	Exercise.findById(req.params.id,function(err, foundExercise){
 		if(err){
 			req.flash("error","Something is wrong");
@@ -27,8 +42,9 @@ router.post("/",  middleware.isLoggedIn, function(req,res){
 		else{
 			var noteRep = req.body.note.rep;
 			var noteSet = req.body.note.set;
+			var noteWeight = req.body.note.weight;
 			var noteDate = new Date().toLocaleDateString();
-			Note.create({rep: noteRep, set: noteSet, date: noteDate},function(err,newlyCreated){
+			Note.create({rep: noteRep, set: noteSet, weight: noteWeight ,date: noteDate},function(err,newlyCreated){
 				if(err){
 					console.log(err);
 					res.redirect("/exerciseCategory");

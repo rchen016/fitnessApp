@@ -3,85 +3,110 @@
 <div class="container">
 		<div class="row text-center" style="display:flex; flex-wrap: wrap;">
 			Workout 1
-		<% currentUser.savedWorkouts.forEach(function(exercise){ %>
-		<% if(exercise.workoutNum=="1"){ %>
-			<div class="col-lg-3 col-md-4 col-sm-6 col-12">
-				<figure class="figure">
-					<a href="/exercises/<%= exercise.value._id %>"><img class="mainExImg figure-img img-fluid rounded" src="<%= exercise.value.image %>"></a>
-					<figcaption class="figure-caption">
-						<%= exercise.value.name %> <%= exercise.workoutNum %>
-					</figcaption>
-				</figure>
-				</div>
-		<% }}); %>
+			<% currentUser.savedWorkouts.forEach(function(exercise){ %>
+			<% if(exercise.workoutNum=="1"){ %>
+				<div class="col-lg-3 col-md-4 col-sm-6 col-12">
+					<figure class="figure">
+						<a href="/exercises/<%= exercise.value._id %>"><img class="mainExImg figure-img img-fluid rounded" src="<%= exercise.value.image %>"></a>
+						<figcaption class="figure-caption">
+							<%= exercise.value.name %> <%= exercise.workoutNum %>
+						</figcaption>
+						<% if(currentUser && currentUser.toggleEditMode){ %>
+						<form action="/exercises/<%= exercise.value._id %>/profile?_method=DELETE" method="POST">
+							<button class="btn btn-danger btn-xs">Delete</button>
+						</form>
+						<%}%>
+					</figure>
+					</div>
+			<% }}); %>
 		</div>
 	</div>
 </div>
 <div class="container">
 		<div class="row text-center" style="display:flex; flex-wrap: wrap;">
 			Workout 2
-		<% currentUser.savedWorkouts.forEach(function(exercise){ %>
-		<% if(exercise.workoutNum=="2"){ %>
-			<div class="col-lg-3 col-md-4 col-sm-6 col-12">
-				<figure class="figure">
-					<a href="/exercises/<%= exercise.value._id %>"><img class="mainExImg figure-img img-fluid rounded" src="<%= exercise.value.image %>"></a>
-					<figcaption class="figure-caption">
-						<%= exercise.value.name %> <%= exercise.workoutNum %>
-					</figcaption>
-				</figure>
-				</div>
-		<% }}); %>
+			<% currentUser.savedWorkouts.forEach(function(exercise){ %>
+			<% if(exercise.workoutNum=="2"){ %>
+				<div class="col-lg-3 col-md-4 col-sm-6 col-12">
+					<figure class="figure">
+						<a href="/exercises/<%= exercise.value._id %>"><img class="mainExImg figure-img img-fluid rounded" src="<%= exercise.value.image %>"></a>
+						<figcaption class="figure-caption">
+							<%= exercise.value.name %> <%= exercise.workoutNum %>
+						</figcaption>
+						<% if(currentUser && currentUser.toggleEditMode){ %>
+						<form action="/exercises/<%= exercise.value._id %>/profile?_method=DELETE" method="POST">
+							<button class="btn btn-danger btn-xs">Delete</button>
+						</form>
+						<%}%>
+					</figure>
+					</div>
+			<% }}); %>
 		</div>
 	</div>
 </div>
 <div class="container">
 		<div class="row text-center" style="display:flex; flex-wrap: wrap;">
 			Workout 3
-		<% currentUser.savedWorkouts.forEach(function(exercise){ %>
-		<% if(exercise.workoutNum=="3"){ %>
-			<div class="col-lg-3 col-md-4 col-sm-6 col-12">
-				<figure class="figure">
-					<a href="/exercises/<%= exercise.value._id %>"><img class="mainExImg figure-img img-fluid rounded" src="<%= exercise.value.image %>"></a>
-					<figcaption class="figure-caption">
-						<%= exercise.value.name %> <%= exercise.workoutNum %>
-					</figcaption>
-				</figure>
-				</div>
-		<% }}); %>
+			<% currentUser.savedWorkouts.forEach(function(exercise){ %>
+			<% if(exercise.workoutNum=="3"){ %>
+				<div class="col-lg-3 col-md-4 col-sm-6 col-12">
+					<figure class="figure">
+						<a href="/exercises/<%= exercise.value._id %>"><img class="mainExImg figure-img img-fluid rounded" src="<%= exercise.value.image %>"></a>
+						<figcaption class="figure-caption">
+							<%= exercise.value.name %> <%= exercise.workoutNum %>
+						</figcaption>
+						<% if(currentUser && currentUser.toggleEditMode){ %>
+						<form action="/exercises/<%= exercise.value._id %>/profile?_method=DELETE" method="POST">
+							<button class="btn btn-danger btn-xs">Delete</button>
+						</form>
+						<%}%>
+					</figure>
+					</div>
+			<% }}); %>
 		</div>
 	</div>
 </div>
 <div class="container">
 		<div class="row text-center" style="display:flex; flex-wrap: wrap;">
 			Workout 4
-		<% currentUser.savedWorkouts.forEach(function(exercise){ %>
-		<% if(exercise.workoutNum=="4"){ %>
-			<div class="col-lg-3 col-md-4 col-sm-6 col-12">
-				<figure class="figure">
-					<a href="/exercises/<%= exercise.value._id %>"><img class="mainExImg figure-img img-fluid rounded" src="<%= exercise.value.image %>"></a>
-					<figcaption class="figure-caption">
-						<%= exercise.value.name %> <%= exercise.workoutNum %>
-					</figcaption>
-				</figure>
-				</div>
-		<% }}); %>
+			<% currentUser.savedWorkouts.forEach(function(exercise){ %>
+			<% if(exercise.workoutNum=="4"){ %>
+				<div class="col-lg-3 col-md-4 col-sm-6 col-12">
+					<figure class="figure">
+						<a href="/exercises/<%= exercise.value._id %>"><img class="mainExImg figure-img img-fluid rounded" src="<%= exercise.value.image %>"></a>
+						<figcaption class="figure-caption">
+							<%= exercise.value.name %> <%= exercise.workoutNum %>
+						</figcaption>
+						<% if(currentUser && currentUser.toggleEditMode){ %>
+						<form action="/exercises/<%= exercise.value._id %>/profile?_method=DELETE" method="POST">
+							<button class="btn btn-danger btn-xs">Delete</button>
+						</form>
+						<%}%>
+					</figure>
+					</div>
+			<% }}); %>
 		</div>
 	</div>
 </div>
 <div class="container">
 		<div class="row text-center" style="display:flex; flex-wrap: wrap;">
-		Workout 5
-		<% currentUser.savedWorkouts.forEach(function(exercise){ %>
-		<% if(exercise.workoutNum=="5"){ %>
-			<div class="col-lg-3 col-md-4 col-sm-6 col-12">
-				<figure class="figure">
-					<a href="/exercises/<%= exercise.value._id %>"><img class="mainExImg figure-img img-fluid rounded" src="<%= exercise.value.image %>"></a>
-					<figcaption class="figure-caption">
-						<%= exercise.value.name %> <%= exercise.workoutNum %>
-					</figcaption>
-				</figure>
-				</div>
-		<% }}); %>
+			Workout 5
+			<% currentUser.savedWorkouts.forEach(function(exercise){ %>
+			<% if(exercise.workoutNum=="5"){ %>
+				<div class="col-lg-3 col-md-4 col-sm-6 col-12">
+					<figure class="figure">
+						<a href="/exercises/<%= exercise.value._id %>"><img class="mainExImg figure-img img-fluid rounded" src="<%= exercise.value.image %>"></a>
+						<figcaption class="figure-caption">
+							<%= exercise.value.name %> <%= exercise.workoutNum %>
+						</figcaption>
+						<% if(currentUser && currentUser.toggleEditMode){ %>
+						<form action="/exercises/<%= exercise.value._id %>/profile?_method=DELETE" method="POST">
+							<button class="btn btn-danger btn-xs">Delete</button>
+						</form>
+						<%}%>
+					</figure>
+					</div>
+			<% }}); %>
 		</div>
 	</div>
 </div>

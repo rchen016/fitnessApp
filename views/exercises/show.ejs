@@ -6,9 +6,16 @@
 			<p class="lead">
 				<%= exercise.name %>
 				<% if(currentUser){ %>
-					<form action="/exercises/<%= exercise._id %>/profile" method="POST">
+					<form id="workoutNumForm" action="/exercises/<%= exercise._id %>/profile" method="POST">
 						<button class="btn btn-success btn-xs">Save</button>
-						<input type="text" name="test"/>
+						<select class="custom-select" name="workoutNum" id="inlineFormCustomSelect">
+							<option disabled="disabled" selected>Workout #</option>
+							<option value="1">1</option>
+							<option value="2">2</option>
+							<option value="3">3</option>
+							<option value="4">4</option>
+							<option value="5">5</option>
+						</select>
 					</form>
 				<% } %>
 				<a class="btn btn-secondary btn-xs" href="/exercises/<%= exercise._id %>/notes/new">Add Note</a>
@@ -40,12 +47,11 @@
 				</div>
 
 				<div class="card-header">
-
 					<p>
 						<% exercise.notes.forEach( function(note){ %>
 							<%	if(currentUser && note.author.username === (currentUser.username)){%>
 								<p> <strong><%= note.author.username %></strong></p>
-								<p> <%= note.date %> Rep: <%= note.rep %> Set: <%= note.set %> </p>
+								<p> <%= note.date %> Weight: <%= note.weight %> lbs Rep: <%= note.rep %> Set: <%= note.set %> </p>
 							<%	}%>
 							<% if(currentUser && note.author.id.equals(currentUser._id) && currentUser.toggleEditMode){ %>
 								<a class="btn btn-xs btn-warning"

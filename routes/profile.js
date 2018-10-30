@@ -21,7 +21,12 @@ router.get("/profile",function(req,res){
 
 //Add Exercise to Profile
 router.post("/exercises/:id/profile",function(req,res){
-	console.log(req.body.test);
+	//ensure they choose a workout Number
+	if(req.body.workoutNum== undefined){
+		req.flash("error", "Please Select Validate Workout Number.");
+		res.redirect("/exerciseCategory");
+		return;
+	}
 	var isUnique = true;
 	Exercise.findById(req.params.id, function(err,foundExercises){
 		if(err){
@@ -36,7 +41,7 @@ router.post("/exercises/:id/profile",function(req,res){
 				}
 			}
 			if(isUnique){
-				req.user.savedWorkouts.push({workoutNum:req.body.test, value:foundExercises });
+				req.user.savedWorkouts.push({workoutNum:req.body.workoutNum, value:foundExercises });
 				req.user.savedExercises.push(foundExercises);
 				req.user.save();
 				console.log(req.user.savedWorkouts);
