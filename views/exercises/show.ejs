@@ -8,6 +8,7 @@
 				<% if(currentUser){ %>
 					<form action="/exercises/<%= exercise._id %>/profile" method="POST">
 						<button class="btn btn-success btn-xs">Save</button>
+						<input type="text" name="test"/>
 					</form>
 				<% } %>
 				<a class="btn btn-secondary btn-xs" href="/exercises/<%= exercise._id %>/notes/new">Add Note</a>

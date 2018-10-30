@@ -1,6 +1,7 @@
 var express  = require("express"),
 	Exercise = require("../models/exercise"),
 	Note     = require("../models/note"),
+	User     = require("../models/user"),
 	middleware = require("../middleware");
 var router = express.Router();
 

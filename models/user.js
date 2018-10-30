@@ -12,7 +12,11 @@ var UserSchema = new mongoose.Schema({
 	savedExercises: {
 		type: Array,
 		"default": [Exercise]
-	}
+	},
+	savedWorkouts:[{
+		workoutNum: String,
+		value: mongoose.Schema.Types.Mixed
+	}]
 });
 
 UserSchema.plugin(passportLocalMongoose);
