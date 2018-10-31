@@ -30,6 +30,7 @@ middlewareObj.checkOwner = function(req,res,next){
 	if(req.isAuthenticated()){
 		//render and pass array to exercise page
 		Exercise.findById(req.params.id, function(err,foundExercise){
+			console.log("FOUND ! ", foundExercise);
 			if(err){
 				req.flash("error", "Exercise Not Found!");
 				res.redirect("back");

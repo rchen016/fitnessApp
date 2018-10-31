@@ -8,13 +8,8 @@
 					<figure class="figure">
 						<a href="/exercises/<%= exercise._id %>"><img class="mainExImg figure-img img-fluid rounded" src="<%= exercise.image %>"></a>
 						<figcaption class="figure-caption">
-							<%= exercise.name %>
+							<%= exercise.name %>1
 						</figcaption>
-						<% if(currentUser && currentUser.toggleEditMode){ %>
-							<form action="/exercises/<%= exercise._id %>/profile?_method=DELETE" method="POST">
-								<button class="btn btn-danger btn-xs">Delete</button>
-							</form>
-						<%}%>
 					</figure>
 				</div>
 			</div>

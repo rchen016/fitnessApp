@@ -54,19 +54,35 @@ router.post("/exercises/:id/profile",function(req,res){
 
 //Delete Exercise
 router.delete("/exercises/:id/profile", function(req,res){
+	console.log("Delete Route");
+	var counter = 0;
 	Exercise.findById(req.params.id, function(err,foundExercises){
+		console.log("ex: ", foundExercises)
 		if(err){
 			req.flash("error", "Deteletion Failed!");
 			return res.render("profile/index");
 		}
 		else{
-			for(var i=0;i<req.user.savedExercises.length;i++){
-				if(foundExercises.name == req.user.savedExercises[i].name){
+			for(var i=0;i<req.user.savedWorkouts.length;i++){
+				if(foundExercises.name == req.user.savedWorkouts[i].name){
 					req.user.savedExercises.splice(i,1);
 					req.user.save();
 					res.render("profile/index");
 				}
 			}
+
+			req.user.savedWorkouts.forEach(function(found){
+				console.log(foundExercises.name);
+				console.log(found.value.name);
+				console.log(counter);
+				if(foundExercises.name == found.value.name){
+					req.user.savedWorkouts.splice(counter,1);
+					req.user.save();
+					res.render("profile/index");
+				}
+				counter = counter + 1;
+			});
+
 		}
 	});
 });

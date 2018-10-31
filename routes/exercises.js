@@ -81,14 +81,17 @@ router.put("/:id",middleware.checkOwner, function(req,res){
 
 //Delte Exercise
 router.delete("/:id", middleware.checkOwner, function(req,res){
-	Exercise.findByIdAndRemove(req.params.id,function(err){
-		if(err){
-			res.redirect("/exerciseCategory");
-		}
-		else{
-			res.redirect("/exerciseCategory");
-		}
-	});
+	console.log("remove");
+	// Exercise.findByIdAndRemove(req.params.id,function(err){
+	// 	if(err){
+	// 		res.redirect("back");
+	// 		return;
+	// 	}
+	// 	else{
+	// 		res.redirect("back");
+	// 		return;
+	// 	}
+	// });
 });
 
 module.exports = router;
