@@ -9,7 +9,7 @@
 					<figure class="figure">
 						<a href="/exercises/<%= exercise.value._id %>"><img class="mainExImg figure-img img-fluid rounded" src="<%= exercise.value.image %>"></a>
 						<figcaption class="figure-caption">
-							<%= exercise.value.name %> <%= exercise.workoutNum %>
+							<%= exercise.value.name %>
 						</figcaption>
 						<% if(currentUser && currentUser.toggleEditMode){ %>
 						<form action="/exercises/<%= exercise.value._id %>/profile?_method=DELETE" method="POST">
