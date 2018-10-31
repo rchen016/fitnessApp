@@ -1,7 +1,9 @@
 var express       = require("express"),
 	passport      = require("passport"),
 	LocalStrategy = require("passport-local"),
-	User          = require("../models/user");
+	User          = require("../models/user"),
+	removeAll     = require("../removeAll"),
+	seedDB        = require("../seeds");
 var router = express.Router();
 
 //Landing page
@@ -53,6 +55,14 @@ router.post("/login", passport.authenticate("local",
 	}),function(req,res){
 });
 
+//Remove all
+router.get("/removeAll",function(req,res){
+	removeAll();
+	res.redirect("/");
+	return;
+});
+
+
 //Logout
 router.get("/logout",function(req,res){
 	req.logout();
@@ -60,4 +70,18 @@ router.get("/logout",function(req,res){
 	res.redirect("/exerciseCategory");
 });
 
+//Toggle Edit Mode
+router.get("/toggleEditMode",function(req,res){
+	req.user.toggleEditMode = !req.user.toggleEditMode;
+	req.user.save();
+	res.redirect("back");
+	return;
+});
+
+//Seed
+router.get("/seedDB",function(req,res){
+	seedDB();
+	res.redirect("back");
+	return;
+});
 module.exports = router;

@@ -1,7 +1,7 @@
-var mongoose = require("mongoose");
-var Exercise = require("./models/exercise");
-var Note   = require("./models/note");
-var ExerciseCategory   = require("./models/exerciseCategory");
+var mongoose         = require("mongoose"),
+    Exercise         = require("./models/exercise"),
+    Note             = require("./models/note"),
+    ExerciseCategory = require("./models/exerciseCategory");
 
 var data = [
     {
@@ -502,22 +502,17 @@ function seedDB(){
             console.log("removed note!");
              //add a few campgrounds
             data.forEach(function(seed){
-				console.log(seed.name);
                 Exercise.create(seed, function(err, exercise){
                     if(err){
                         console.log(err)
-                    } else {
-                        console.log("added a exercises");
                     }
 					if(exercise.category == "chest"){
-						console.log("added a chest");
 						ExerciseCategory.findOne({name:"chest"},function(err,exCat){
 							exCat.exerciseList.push(exercise);
 							exCat.save();
 						});
 					}
 					else if(exercise.category == "arm"){
-						console.log("added a arm");
 						ExerciseCategory.findOne({name:"arm"},function(err,exCat){
 							exCat.exerciseList.push(exercise);
 							exCat.save();
@@ -525,7 +520,6 @@ function seedDB(){
 
 					}
 					else if(exercise.category == "back"){
-						console.log("added a back");
 						ExerciseCategory.findOne({name:"back"},function(err,exCat){
 							exCat.exerciseList.push(exercise);
 							exCat.save();
@@ -533,7 +527,6 @@ function seedDB(){
 
 					}
 					else if(exercise.category == "leg"){
-						console.log("added a leg");
 						ExerciseCategory.findOne({name:"leg"},function(err,exCat){
 							exCat.exerciseList.push(exercise);
 							exCat.save();
@@ -541,7 +534,6 @@ function seedDB(){
 
 					}
 					else if(exercise.category == "shoulder"){
-						console.log("added a shoulder");
 						ExerciseCategory.findOne({name:"shoulder"},function(err,exCat){
 							exCat.exerciseList.push(exercise);
 							exCat.save();
@@ -549,16 +541,12 @@ function seedDB(){
 
 					}
 					else if(exercise.category == "abdominal"){
-						console.log("added a abdominal");
 						ExerciseCategory.findOne({name:"abdominal"},function(err,exCat){
 							exCat.exerciseList.push(exercise);
 							exCat.save();
 						});
 
 					}
-					// ExerciseCategory.findOne({name:"abdominal"},function(err,exCat){
-					// 	//console.log(exCat);
-					// });
                 });
             });
         });

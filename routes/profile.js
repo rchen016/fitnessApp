@@ -111,16 +111,4 @@ router.put("/settings", function(req,res){
 	});
 });
 
-router.get("/toggleEditMode",function(req,res){
-	req.user.toggleEditMode = !req.user.toggleEditMode;
-	req.user.save();
-	res.redirect("back");
-	return;
-});
-
-router.get("/seedDB",function(req,res){
-	seedDB();
-	res.redirect("back");
-	return;
-});
 module.exports = router;

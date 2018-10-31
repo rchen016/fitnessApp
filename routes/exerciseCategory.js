@@ -1,5 +1,5 @@
-var express = require("express");
-var ExerciseCategory = require("../models/exerciseCategory");
+var express          = require("express"),
+    ExerciseCategory = require("../models/exerciseCategory");
 var router = express.Router();
 
 //Main Landing Page

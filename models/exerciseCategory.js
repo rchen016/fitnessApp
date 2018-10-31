@@ -1,5 +1,6 @@
-var mongoose = require("mongoose");
-var Exercise = require("./exercise");
+var mongoose = require("mongoose"),
+    Exercise = require("./exercise");
+	
 var exerciseCategorySchema = new mongoose.Schema({
 	name: String,
 	image: String,

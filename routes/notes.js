@@ -1,6 +1,6 @@
-var express  = require("express"),
-	Exercise = require("../models/exercise"),
-	Note     = require("../models/note"),
+var express    = require("express"),
+	Exercise   = require("../models/exercise"),
+	Note       = require("../models/note"),
 	middleware = require("../middleware");
 var router = express.Router({mergeParams:true});
 
