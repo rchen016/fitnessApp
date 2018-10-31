@@ -3,7 +3,7 @@
 <div class="container">
 		<h1 style="text-align:center;">Add New Note to <%= exercise.name %></h1>
 			<div style="width:30%; margin:25px auto;">
-				<form action="/exercises/<%= exercise._id %>/notes " method="POST">
+				<form action="/exercises/<%= exercise._id %>/notes" method="POST">
 					<div class="form-row align-items-center">
 						<div class="col-auto my-1">
 							<select class="custom-select" name="note[rep]" id="inlineFormCustomSelect">
@@ -56,7 +56,6 @@
 				</form>
 				<a href="/exerciseCategory">Go Back</a>
 			</div>
-
 </div>
 
 <% include ../partials/footer %>

@@ -71,6 +71,30 @@ router.delete("/exercises/:id/profile", function(req,res){
 	});
 });
 
+router.get("/settings", function(req,res){
+	res.render("profile/settings");
+});
+
+router.put("/settings", function(req,res){
+	if(req.body.newpassword != req.body.confirmNewPassword){
+		req.flash("error", "Passwords Don't match!");
+		res.redirect("back");
+		return;
+	}
+	User.findByUsername(req.session.passport.user).then(function(sanitizedUser){
+		if(sanitizedUser){
+			sanitizedUser.setPassword(req.body.newpassword, function() {
+                sanitizedUser.save();
+                req.flash("success", "Password Reset Sucessful!");
+				res.redirect("/exerciseCategory");
+            });
+		}else{
+			req.flash("error", "Password Reset Failed!");
+			return res.render("profile/index");
+		}
+	});
+});
+
 router.get("/toggleEditMode",function(req,res){
 	req.user.toggleEditMode = !req.user.toggleEditMode;
 	req.user.save();

@@ -458,31 +458,31 @@ function seedDB(){
 	 } else {
 	 }
    });
-   ExerciseCategory.create({name:"arm",image:"https://pre00.deviantart.net/ce4f/th/pre/i/2010/306/9/d/arm_muscle_anatomy_study_by_oxfordcoma-d320k2d.jpg"},function(err, list){
+   ExerciseCategory.create({name:"arm",image:"https://i.imgur.com/8tlpjMK.jpg"},function(err, list){
 	 if(err){
 		 console.log(err)
 	 } else {
 	 }
    });
-   ExerciseCategory.create({name:"back",image:"https://img.aws.livestrongcdn.com/ls-hp-1920-image/ds-photo/getty/article/103/132/514675913_XS.jpg"},function(err, list){
+   ExerciseCategory.create({name:"back",image:"https://i.imgur.com/v7ttIvT.jpg"},function(err, list){
 	 if(err){
 		 console.log(err)
 	 } else {
 	 }
    });
-   ExerciseCategory.create({name:"leg",image:"https://images-na.ssl-images-amazon.com/images/I/7141qAgHKiL._SL1480_.jpg"},function(err, list){
+   ExerciseCategory.create({name:"leg",image:"https://i.imgur.com/8PWiJNK.jpg"},function(err, list){
 	 if(err){
 		 console.log(err)
 	 } else {
 	 }
    });
-   ExerciseCategory.create({name:"shoulder",image:"https://i2.wp.com/www.languageofdesires.com/wp-content/uploads/2017/08/Shoulder_Muscle.png?ssl=1"},function(err, list){
+   ExerciseCategory.create({name:"shoulder",image:"https://i.imgur.com/SM0erl7.jpg"},function(err, list){
 	 if(err){
 		 console.log(err)
 	 } else {
 	 }
    });
-   ExerciseCategory.create({name:"abdominal",image:"https://i.pinimg.com/originals/a4/18/45/a418454e46ee5e0bf308e8378ce9e3ba.jpg"},function(err, list){
+   ExerciseCategory.create({name:"abdominal",image:"https://i.imgur.com/lNKBEPu.jpg"},function(err, list){
 	 if(err){
 		 console.log(err)
 	 } else {

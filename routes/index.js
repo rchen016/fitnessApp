@@ -21,6 +21,11 @@ router.get("/disclaimer",function(req,res){
 
 //Signup
 router.post("/register",function(req,res){
+	if(req.body.password != req.body.confirmPassword){
+		req.flash("error", "Passwords Don't match!");
+		res.redirect("back");
+		return;
+	}
 	var newUser = new User({username: req.body.username});
 	User.register(newUser, req.body.password,function(err, user){
 		if(err){
