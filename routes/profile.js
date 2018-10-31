@@ -1,10 +1,11 @@
-var express = require("express"),
-    passport = require("passport"),
+var express       = require("express"),
+    passport      = require("passport"),
+	seedDB        = require("../seeds"),
 	LocalStrategy = require("passport-local"),
 	User          = require("../models/user")
-	Exercise = require("../models/exercise"),
-	Note     = require("../models/note"),
-	middleware = require("../middleware");
+	Exercise      = require("../models/exercise"),
+	Note          = require("../models/note"),
+	middleware    = require("../middleware");
 
 var router = express.Router();
 //Display Personal Profile
@@ -73,6 +74,12 @@ router.delete("/exercises/:id/profile", function(req,res){
 router.get("/toggleEditMode",function(req,res){
 	req.user.toggleEditMode = !req.user.toggleEditMode;
 	req.user.save();
+	res.redirect("back");
+	return;
+});
+
+router.get("/seedDB",function(req,res){
+	seedDB();
 	res.redirect("back");
 	return;
 });
