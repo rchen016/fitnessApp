@@ -5,52 +5,12 @@ var express  = require("express"),
 	middleware = require("../middleware");
 var router = express.Router();
 
-//Exercise Page
-router.get("/", function(req,res){
-	//render and pass array to exercise page
-	Exercise.find({}, function(err,allExercises){
-		if(err){
-			console.log(err);
-		}
-		else{
-			res.render("exercises/index",{exercises:allExercises});
-		}
-	});
-});
-
-//Create new Exercise
-router.post("/", middleware.isLoggedIn, function(req,res){
-	//get data to create new array
-	var exName = req.body.name;
-	var exImageURL = req.body.image;
-	var exDesc = req.body.description;
-	var exCat = req.body.category;
-	var author = {
-		id: req.user._id,
-		username: req.user.username
-	}
-	var newExercise = {name:exName, image:exImageURL, description:exDesc, category:exCat, author:author};
-	Exercise.create(newExercise,function(err,newlyCreated){
-		if(err){
-			console.log(err);
-		}
-		else{
-			res.redirect("/exerciseCategory");
-		}
-	});
-});
-
-//Create new Excercise Form
-router.get("/new", middleware.isLoggedIn, function(req,res){
-	res.render("exercises/new");
-});
-
 //Exercise details
 router.get("/:id",function(req,res){
-	console.log("EX Route");
 	Exercise.findById(req.params.id).populate("notes").exec(function(err, foundExercise){
 		if(err){
-			console.log(err);
+			req.flash("error", err);
+			return;
 		}
 		else{
 			console.log(foundExercise);
@@ -77,21 +37,6 @@ router.put("/:id",middleware.checkOwner, function(req,res){
 			res.redirect("/exercises/"+req.params.id);
 		}
 	})
-});
-
-//Delte Exercise
-router.delete("/:id", middleware.checkOwner, function(req,res){
-	console.log("remove");
-	// Exercise.findByIdAndRemove(req.params.id,function(err){
-	// 	if(err){
-	// 		res.redirect("back");
-	// 		return;
-	// 	}
-	// 	else{
-	// 		res.redirect("back");
-	// 		return;
-	// 	}
-	// });
 });
 
 module.exports = router;

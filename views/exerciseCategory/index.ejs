@@ -8,11 +8,6 @@
 			and from there, each section will have all the necessary workouts you can add to your
 			profile list to keep track of all your progress.
 		</p>
-		<p>
-			<% if(currentUser && currentUser.username === "admin"){ %>
-				<a class="btn btn-primary btn-lg" href="/exercises/new"> Add New Exercise</a>
-			<% } %>
-		</p>
 	</header>
 	<div class="row text-center" style="display:flex; flex-wrap: wrap;">
 		<% foundList.forEach(function(list){ %>
