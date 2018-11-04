@@ -5,11 +5,35 @@ var express       = require("express"),
 	removeAll     = require("../removeAll"),
 	seedDB        = require("../seeds");
 var router = express.Router();
+var testArr = [];
+
+Array.prototype.swapItems = function(a, b){
+    this[a] = this.splice(b, 1, this[a])[0];
+    return this;
+}
 
 //Landing page
 router.get("/",function(req,res){
 	res.render("landing");
 });
+///
+
+router.get("/test",function(req,res){
+	res.render("test");
+});
+router.post("/testing",function(req,res){
+	testArr.push(req.body.blah);
+	if(testArr.length==2){
+		console.log("Swap time");
+		req.user.savedWorkouts.swapItems(testArr[0],testArr[1]);
+		req.user.save();
+		testArr = [];
+	}
+	res.redirect("back");
+	return;
+});
+
+///
 
 //render register page
 router.get("/register",function(req,res){

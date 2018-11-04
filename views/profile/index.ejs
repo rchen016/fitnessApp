@@ -3,22 +3,27 @@
 <div class="container">
 		<div class="row text-center" style="display:flex; flex-wrap: wrap;">
 			<h2>Workout 1</h2>
+			<% var counter = 0; %>
 			<% currentUser.savedWorkouts.forEach(function(exercise){ %>
 			<% if(exercise.workoutNum=="1"){ %>
 				<div class="col-lg-3 col-md-4 col-sm-6 col-12">
-					<figure class="figure">
+					<figure id="<%=counter%>" class="figure">
 						<a href="/exercises/<%= exercise.value._id %>"><img class="mainExImg figure-img img-fluid rounded" src="<%= exercise.value.image %>"></a>
 						<figcaption class="figure-caption">
 							<%= exercise.value.name %>
 						</figcaption>
 						<% if(currentUser && currentUser.toggleEditMode){ %>
-						<form action="/exercises/<%= exercise.value._id %>/profile?_method=DELETE" method="POST">
+						<form id="toggleBtns" action="/testing" method="POST">
+							<input id="moveBtn" name="blah" value=<%=counter%> />
+							<button class="btn btn-primary btn-xs">Move</button>
+						</form>
+						<form id="toggleBtns" action="/exercises/<%= exercise.value._id %>/profile?_method=DELETE" method="POST">
 							<button class="btn btn-danger btn-xs">Delete</button>
 						</form>
 						<%}%>
 					</figure>
-					</div>
-			<% }}); %>
+				</div>
+			<% counter++; }}); %>
 		</div>
 	</div>
 </div>
@@ -39,7 +44,7 @@
 						</form>
 						<%}%>
 					</figure>
-					</div>
+				</div>
 			<% }}); %>
 		</div>
 	</div>
@@ -61,7 +66,7 @@
 						</form>
 						<%}%>
 					</figure>
-					</div>
+				</div>
 			<% }}); %>
 		</div>
 	</div>
@@ -83,7 +88,7 @@
 						</form>
 						<%}%>
 					</figure>
-					</div>
+				</div>
 			<% }}); %>
 		</div>
 	</div>
@@ -105,7 +110,7 @@
 						</form>
 						<%}%>
 					</figure>
-					</div>
+				</div>
 			<% }}); %>
 		</div>
 	</div>

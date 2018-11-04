@@ -33,3 +33,11 @@
 #inlineFormCustomSelect{
 	width: 40%;
 }
+
+#moveBtn{
+	display:none;
+}
+
+#toggleBtns{
+	display: inline;
+}
