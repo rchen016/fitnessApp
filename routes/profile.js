@@ -45,7 +45,6 @@ router.post("/exercises/:id/profile",function(req,res){
 				req.user.savedWorkouts.push({workoutNum:req.body.workoutNum, value:foundExercises });
 				req.user.savedExercises.push(foundExercises);
 				req.user.save();
-				console.log(req.user.savedWorkouts);
 			}
 			res.redirect("/exerciseCategory");
 		}
@@ -57,7 +56,6 @@ router.delete("/exercises/:id/profile", function(req,res){
 	console.log("Delete Route");
 	var counter = 0;
 	Exercise.findById(req.params.id, function(err,foundExercises){
-		console.log("ex: ", foundExercises)
 		if(err){
 			req.flash("error", "Deteletion Failed!");
 			return res.render("profile/index");
@@ -72,9 +70,6 @@ router.delete("/exercises/:id/profile", function(req,res){
 			}
 
 			req.user.savedWorkouts.forEach(function(found){
-				console.log(foundExercises.name);
-				console.log(found.value.name);
-				console.log(counter);
 				if(foundExercises.name == found.value.name){
 					req.user.savedWorkouts.splice(counter,1);
 					req.user.save();

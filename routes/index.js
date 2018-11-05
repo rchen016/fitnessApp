@@ -5,7 +5,8 @@ var express       = require("express"),
 	removeAll     = require("../removeAll"),
 	seedDB        = require("../seeds");
 var router = express.Router();
-var testArr = [];
+var swapListTracker = [];
+var workoutNumTracker = [];
 
 Array.prototype.swapItems = function(a, b){
     this[a] = this.splice(b, 1, this[a])[0];
@@ -22,12 +23,23 @@ router.get("/test",function(req,res){
 	res.render("test");
 });
 router.post("/testing",function(req,res){
-	testArr.push(req.body.blah);
-	if(testArr.length==2){
+	swapListTracker.push(req.body.itemCounter["counter"]);
+	workoutNumTracker.push(req.body.itemCounter["numList"]);
+	if(swapListTracker.length==2){
 		console.log("Swap time");
-		req.user.savedWorkouts.swapItems(testArr[0],testArr[1]);
+		console.log("SL: ",swapListTracker);
+		console.log("WL: ",workoutNumTracker);
+		if(workoutNumTracker[0] != workoutNumTracker[1]){
+			swapListTracker = [];
+			workoutNumTracker = [];
+			req.flash("error", "Workout Number don't match");
+			res.redirect("back");
+			return;
+		}
+		req.user.savedWorkouts.swapItems(swapListTracker[0],swapListTracker[1]);
 		req.user.save();
-		testArr = [];
+		swapListTracker = [];
+		workoutNumTracker = [];
 	}
 	res.redirect("back");
 	return;
@@ -81,11 +93,15 @@ router.post("/login", passport.authenticate("local",
 
 //Remove all
 router.get("/removeAll",function(req,res){
-	removeAll();
-	res.redirect("/");
+	if(req.user && req.user.username=="admin"){
+		removeAll();
+		res.redirect("/");
+		return;
+	}
+	req.flash("error", "Restricted Page");
+	res.redirect("back");
 	return;
 });
-
 
 //Logout
 router.get("/logout",function(req,res){
@@ -96,15 +112,25 @@ router.get("/logout",function(req,res){
 
 //Toggle Edit Mode
 router.get("/toggleEditMode",function(req,res){
-	req.user.toggleEditMode = !req.user.toggleEditMode;
-	req.user.save();
+	if(req.user){
+		req.user.toggleEditMode = !req.user.toggleEditMode;
+		req.user.save();
+		res.redirect("back");
+		return;
+	}
+	req.flash("error", "Restricted Page");
 	res.redirect("back");
 	return;
 });
 
 //Seed
 router.get("/seedDB",function(req,res){
-	seedDB();
+	if(req.user && req.user.username=="admin"){
+		seedDB();
+		res.redirect("back");
+		return;
+	}
+	req.flash("error", "Restricted Page");
 	res.redirect("back");
 	return;
 });

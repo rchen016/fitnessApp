@@ -21,13 +21,13 @@ function removeAll(){
    User.remove({},function(){
 	 console.log("removed User");
    });
-   var newUser = new User({username: "admin"});
-   var password = "zx1230321";
-   console.log("ReCreate Admin");
-   User.register(newUser, password,function(err){
- 	  if(err){
- 		  console.log("err");
- 	  }
-   });
+   // var newUser = new User({username: "admin"});
+   // var password = "zx1230321";
+   // console.log("ReCreate Admin");
+   // User.register(newUser, password,function(err){
+ 	//   if(err){
+ 	// 	  console.log("err");
+ 	//   }
+   // });
 }
  module.exports = removeAll;

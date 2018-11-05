@@ -13,7 +13,6 @@ router.get("/:id",function(req,res){
 			return;
 		}
 		else{
-			console.log(foundExercise);
 			res.render("exercises/show",{exercise:foundExercise});
 		}
 	});

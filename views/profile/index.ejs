@@ -14,7 +14,8 @@
 						</figcaption>
 						<% if(currentUser && currentUser.toggleEditMode){ %>
 						<form id="toggleBtns" action="/testing" method="POST">
-							<input id="moveBtn" name="blah" value=<%=counter%> />
+							<input id="moveBtn" name="itemCounter[counter]" value=<%=counter%> />
+							<input id="moveBtn" name="itemCounter[numList]" value=<%=exercise.workoutNum%> />
 							<button class="btn btn-primary btn-xs">Move</button>
 						</form>
 						<form id="toggleBtns" action="/exercises/<%= exercise.value._id %>/profile?_method=DELETE" method="POST">
@@ -23,13 +24,14 @@
 						<%}%>
 					</figure>
 				</div>
-			<% counter++; }}); %>
+			<%  }counter++;}); %>
 		</div>
 	</div>
 </div>
 <div class="container">
 		<div class="row text-center" style="display:flex; flex-wrap: wrap;">
 			<h2>Workout 2</h2>
+			<% var counter2 = 0; %>
 			<% currentUser.savedWorkouts.forEach(function(exercise){ %>
 			<% if(exercise.workoutNum=="2"){ %>
 				<div class="col-lg-3 col-md-4 col-sm-6 col-12">
@@ -39,81 +41,105 @@
 							<%= exercise.value.name %>
 						</figcaption>
 						<% if(currentUser && currentUser.toggleEditMode){ %>
-						<form action="/exercises/<%= exercise.value._id %>/profile?_method=DELETE" method="POST">
+						<form id="toggleBtns" action="/testing" method="POST">
+							<input id="moveBtn" name="itemCounter[counter]" value=<%=counter2%> />
+							<input id="moveBtn" name="itemCounter[numList]" value=<%=exercise.workoutNum%> />
+							<button class="btn btn-primary btn-xs">Move</button>
+						</form>
+						<form id="toggleBtns" action="/exercises/<%= exercise.value._id %>/profile?_method=DELETE" method="POST">
 							<button class="btn btn-danger btn-xs">Delete</button>
 						</form>
 						<%}%>
 					</figure>
 				</div>
-			<% }}); %>
+			<%  }counter2++;}); %>
 		</div>
 	</div>
 </div>
 <div class="container">
 		<div class="row text-center" style="display:flex; flex-wrap: wrap;">
 			<h2>Workout 3</h2>
+			<% var counter3 = 0; %>
 			<% currentUser.savedWorkouts.forEach(function(exercise){ %>
 			<% if(exercise.workoutNum=="3"){ %>
 				<div class="col-lg-3 col-md-4 col-sm-6 col-12">
 					<figure class="figure">
 						<a href="/exercises/<%= exercise.value._id %>"><img class="mainExImg figure-img img-fluid rounded" src="<%= exercise.value.image %>"></a>
 						<figcaption class="figure-caption">
-							<%= exercise.value.name %> <%= exercise.workoutNum %>
+							<%= exercise.value.name %>
 						</figcaption>
 						<% if(currentUser && currentUser.toggleEditMode){ %>
-						<form action="/exercises/<%= exercise.value._id %>/profile?_method=DELETE" method="POST">
+						<form id="toggleBtns" action="/testing" method="POST">
+							<input id="moveBtn" name="itemCounter[counter]" value=<%=counter3%> />
+							<input id="moveBtn" name="itemCounter[numList]" value=<%=exercise.workoutNum%> />
+							<button class="btn btn-primary btn-xs">Move</button>
+						</form>
+						<form id="toggleBtns" action="/exercises/<%= exercise.value._id %>/profile?_method=DELETE" method="POST">
 							<button class="btn btn-danger btn-xs">Delete</button>
 						</form>
 						<%}%>
 					</figure>
 				</div>
-			<% }}); %>
+			<% }counter3++;}); %>
 		</div>
 	</div>
 </div>
 <div class="container">
 		<div class="row text-center" style="display:flex; flex-wrap: wrap;">
 			<h2>Workout 4</h2>
+			<% var counter4 = 0; %>
 			<% currentUser.savedWorkouts.forEach(function(exercise){ %>
 			<% if(exercise.workoutNum=="4"){ %>
 				<div class="col-lg-3 col-md-4 col-sm-6 col-12">
 					<figure class="figure">
 						<a href="/exercises/<%= exercise.value._id %>"><img class="mainExImg figure-img img-fluid rounded" src="<%= exercise.value.image %>"></a>
 						<figcaption class="figure-caption">
-							<%= exercise.value.name %> <%= exercise.workoutNum %>
+							<%= exercise.value.name %>
 						</figcaption>
 						<% if(currentUser && currentUser.toggleEditMode){ %>
-						<form action="/exercises/<%= exercise.value._id %>/profile?_method=DELETE" method="POST">
+						<form id="toggleBtns" action="/testing" method="POST">
+							<input id="moveBtn" name="itemCounter[counter]" value=<%=counter4%> />
+							<input id="moveBtn" name="itemCounter[numList]" value=<%=exercise.workoutNum%> />
+							<button class="btn btn-primary btn-xs">Move</button>
+						</form>
+						<form id="toggleBtns" action="/exercises/<%= exercise.value._id %>/profile?_method=DELETE" method="POST">
 							<button class="btn btn-danger btn-xs">Delete</button>
 						</form>
 						<%}%>
 					</figure>
 				</div>
-			<% }}); %>
+			<% }counter4++;}); %>
 		</div>
 	</div>
 </div>
 <div class="container">
 		<div class="row text-center" style="display:flex; flex-wrap: wrap;">
 			<h2>Workout 5</h2>
+			<% var counter5 = 0; %>
 			<% currentUser.savedWorkouts.forEach(function(exercise){ %>
 			<% if(exercise.workoutNum=="5"){ %>
 				<div class="col-lg-3 col-md-4 col-sm-6 col-12">
 					<figure class="figure">
 						<a href="/exercises/<%= exercise.value._id %>"><img class="mainExImg figure-img img-fluid rounded" src="<%= exercise.value.image %>"></a>
 						<figcaption class="figure-caption">
-							<%= exercise.value.name %> <%= exercise.workoutNum %>
+							<%= exercise.value.name %>
 						</figcaption>
 						<% if(currentUser && currentUser.toggleEditMode){ %>
-						<form action="/exercises/<%= exercise.value._id %>/profile?_method=DELETE" method="POST">
+						<form id="toggleBtns" action="/testing" method="POST">
+							<input id="moveBtn" name="itemCounter[counter]" value=<%=counter5%> />
+							<input id="moveBtn" name="itemCounter[numList]" value=<%=exercise.workoutNum%> />
+							<button class="btn btn-primary btn-xs">Move</button>
+						</form>
+						<form id="toggleBtns" action="/exercises/<%= exercise.value._id %>/profile?_method=DELETE" method="POST">
 							<button class="btn btn-danger btn-xs">Delete</button>
 						</form>
 						<%}%>
 					</figure>
 				</div>
-			<% }}); %>
+			<% }counter5++;}); %>
 		</div>
 	</div>
 </div>
+
 
 <% include ../partials/footer %>
