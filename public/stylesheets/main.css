@@ -47,11 +47,6 @@
   flex-wrap: wrap;
 }
 
-.equal2 {
-  display: flex;
-  display: -webkit-flex;
-  flex-wrap: wrap;
-}
 
 .indexExImg{
 	-webkit-filter: grayscale(100%); /* Safari 6.0 - 9.0 */
