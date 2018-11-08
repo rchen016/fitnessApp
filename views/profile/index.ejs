@@ -1,12 +1,49 @@
 <% include ../partials/header %>
 
+<script>
+
+
+	const reorderArray = (event, originalArray) => {
+	  const movedItem = originalArray.filter((item, index) => index === event.oldIndex);
+	  const remainingItems = originalArray.filter((item, index) => index !== event.oldIndex);
+
+	  const reorderedItems = [
+		...remainingItems.slice(0, event.newIndex),//2 3 4
+		movedItem[0], //1
+		...remainingItems.slice(event.newIndex)
+	  ];
+
+	  return reorderedItems;
+	}
+	function move(clickedID){
+		var divID = clickedID;
+		var tempArray = [];
+		if(tempArray.length==0){
+			console.log("One Item");
+			tempArray.push(divID);
+		}
+		else if(tempArray.length==1){
+			console.log("Two Item");
+			tempArray.push(divID);
+			console.log("TA1: ", tempArray[0] + "TA2: ", tempArray[1]);
+			console.log("SWAP!");
+			currentUser.savedWorkouts = reorderArray({newIndex: parseInt(tempArray[1]), oldIndex: parseInt(tempArray[0])},currentUser.savedWorkouts);
+			tempArray = [];
+			console.log("OG: ",currentUser.savedWorkouts);
+			console.log("TA: ",tempArray);
+
+		}
+		console.log("final: ",currentUser.savedWorkouts);
+	}
+</script>
 <div class="container">
 		<div class="row text-center" style="display:flex; flex-wrap: wrap;">
 			<h2>Workout 1</h2>
+			<% var counter = 0; %>
 			<% currentUser.savedWorkouts.forEach(function(exercise){ %>
 			<% if(exercise.workoutNum=="1"){ %>
 				<div class="col-lg-3 col-md-4 col-sm-6 col-12">
-					<figure class="figure">
+					<figure onclick="move(this.id)" id="<%=counter%>" class="figure">
 						<a href="/exercises/<%= exercise.value._id %>"><img class="mainExImg figure-img img-fluid rounded" src="<%= exercise.value.image %>"></a>
 						<figcaption class="figure-caption">
 							<%= exercise.value.name %>
@@ -18,6 +55,7 @@
 						<%}%>
 					</figure>
 					</div>
+				<% counter++ %>
 			<% }}); %>
 		</div>
 	</div>

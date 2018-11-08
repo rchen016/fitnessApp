@@ -1,0 +1,65 @@
+<% include ./partials/header %>
+
+
+<div class="container">
+	<script>
+		var originalArray = [1,2,3,4];
+		var testArr = [1,2,3,4];
+		var tempArray = [];
+		// data events emitted by dragging and dropping UI elements
+		const event1 = {newIndex: 1, oldIndex: 0};
+		const event2 = {newIndex: 2, oldIndex: 0};
+		const event3 = {newIndex: 3, oldIndex: 0};
+		const event4 = {newIndex: 1, oldIndex: 2};
+		const event5 = {newIndex: 0, oldIndex: 3};
+
+		const reorderArray = (event, originalArray) => {
+		  const movedItem = originalArray.filter((item, index) => index === event.oldIndex);
+		  const remainingItems = originalArray.filter((item, index) => index !== event.oldIndex);
+
+		  const reorderedItems = [
+		    ...remainingItems.slice(0, event.newIndex),//2 3 4
+		    movedItem[0], //1
+		    ...remainingItems.slice(event.newIndex)
+		  ];
+
+		  return reorderedItems;
+		}
+	</script>
+	<script>
+		function woop(clickedID){
+			var divID = clickedID.substring(clickedID.length,clickedID.length-1);
+			if(tempArray.length==0){
+				console.log("One Item");
+				tempArray.push(divID);
+			}
+			else if(tempArray.length==1){
+				console.log("Two Item");
+				tempArray.push(divID);
+				console.log("TA1: ", tempArray[0] + "TA2: ", tempArray[1]);
+				console.log("SWAP!");
+				originalArray = reorderArray({newIndex: parseInt(tempArray[1]), oldIndex: parseInt(tempArray[0])},originalArray);
+				tempArray = [];
+				console.log("OG: ",originalArray);
+				console.log("TA: ",tempArray);
+				for(var i=0;i<originalArray.length;i++){
+					document.getElementById("displayNumber"+i).innerHTML = originalArray[i];
+				}
+
+			}
+			console.log("final: ",originalArray);
+		}
+	</script>
+	<% var i = 0; %>
+	<% testList.forEach(function(num){ %>
+		<p onclick="woop(this.id)" id="displayNumber<%=i%>">
+			<%= num %>
+			<% i++ %>
+
+		</p>
+	<% }); %>
+
+
+</div>
+
+<% include ./partials/footer %>

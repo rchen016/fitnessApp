@@ -6,6 +6,14 @@ var express       = require("express"),
 	seedDB        = require("../seeds");
 var router = express.Router();
 
+//test page
+router.get("/test",function(req,res){
+	var originalArray = [1,2,3,4];
+	var temp = [];
+	var tempList = [];
+	res.render("test",{testList:originalArray,tempList:tempList});
+});
+
 //Landing page
 router.get("/",function(req,res){
 	res.render("landing");
