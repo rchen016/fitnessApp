@@ -86,9 +86,11 @@
 			<div id="stepCard" class="card hidethat">
 
 				<div class="card-body">
-					<h5 class="card-title"><%= exercise.name %></h5>
-					<p class="card-text"><%= exercise.description %></p>
-					<p class="card-text">Step</p>
+					<h5 class="card-title">How to Properly: <%= exercise.name %></h5>
+					<% var steps = exercise.description.split("#"); %>
+					<% for(i=0;i<steps.length;++i){ %>
+						<%=i+1%>. <%= exercise.description.split("#")[i]; %> <br/>
+					<% } %>
 					<% if(currentUser && exercise.author.username == (currentUser.username) && currentUser.toggleEditMode){ %>
 						<a class="btn btn-warning btn-lg" href="/exercises/<%= exercise._id %>/edit">Edit</a>
 						<form id="delete-form" action="/exercises/<%= exercise._id %>?_method=DELETE" method="POST">
@@ -103,9 +105,8 @@
 			<div id="miscCard" class="card hidethat">
 
 				<div class="card-body">
-					<h5 class="card-title"><%= exercise.name %></h5>
-					<p class="card-text"><%= exercise.description %></p>
-					<p class="card-text">MISC</p>
+					<h5 class="card-title">MISC</h5>
+					<p class="card-text">Bacon ipsum dolor amet capicola chicken venison leberkas pork chop andouille tenderloin porchetta buffalo cupim. Pork chop bacon andouille porchetta picanha. Brisket kevin tenderloin biltong burgdoggen landjaeger tail ribeye. Ground round swine cupim bacon spare ribs boudin flank kevin filet mignon. Jerky burgdoggen prosciutto porchetta bresaola filet mignon.</p>
 					<% if(currentUser && exercise.author.username == (currentUser.username) && currentUser.toggleEditMode){ %>
 						<a class="btn btn-warning btn-lg" href="/exercises/<%= exercise._id %>/edit">Edit</a>
 						<form id="delete-form" action="/exercises/<%= exercise._id %>?_method=DELETE" method="POST">
