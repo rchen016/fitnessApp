@@ -11,7 +11,8 @@ var express          = require("express"),
 	methodOverride   = require("method-override"),
 	flash            = require("connect-flash"),
 	Exercise         = require("./models/exercise"),
-	ExerciseCategory = require("./models/exerciseCategory");
+	ExerciseCategory = require("./models/exerciseCategory"),
+	$                = require("jquery");
 
 var exerciseRoutes    = require("./routes/exercises"),
 	noteRoutes        = require("./routes/notes"),

@@ -1,5 +1,6 @@
 <% include ../partials/header %>
 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 <div class="container">
 	<div class="row">
 		<div class="col-12 col-md-3">
@@ -21,23 +22,23 @@
 				<a class="btn btn-secondary btn-xs" href="/exercises/<%= exercise._id %>/notes/new">Add Note</a>
 			</p>
 			<div class="list-group">
-				<li class="list-group-item active">
-					Info 1
+				<li id="overviewSwitch" class="list-group-item active">
+					Overview
 				</li>
-				<li class="list-group-item">
-					Info 2
+				<li id="stepSwitch" class="list-group-item">
+					Steps
 				</li>
-				<li class="list-group-item">
-					Info 3
+				<li id="miscSwitch" class="list-group-item">
+					MISC
 				</li>
 			</div>
 		</div>
 		<div class="col-12 col-md-9">
-			<div class="card">
+			<!-- Overview Card Start-->
+			<div id="overviewCard" class="card">
 				<img class="card-img-top" src="<%= exercise.image %>" alt="Card image cap">
 				<div class="card-body">
 					<h5 class="card-title"><%= exercise.name %></h5>
-					<p class="card-text"><%= exercise.description %></p>
 					<% if(currentUser && exercise.author.username == (currentUser.username) && currentUser.toggleEditMode){ %>
 						<a class="btn btn-warning btn-lg" href="/exercises/<%= exercise._id %>/edit">Edit</a>
 						<form id="delete-form" action="/exercises/<%= exercise._id %>?_method=DELETE" method="POST">
@@ -80,11 +81,78 @@
 						<% }); %>
 					</tbody>
 				</table>
-			</div>
+			</div><!-- Overview Card End-->
+			<!-- Steps Card End-->
+			<div id="stepCard" class="card hidethat">
+
+				<div class="card-body">
+					<h5 class="card-title"><%= exercise.name %></h5>
+					<p class="card-text"><%= exercise.description %></p>
+					<p class="card-text">Step</p>
+					<% if(currentUser && exercise.author.username == (currentUser.username) && currentUser.toggleEditMode){ %>
+						<a class="btn btn-warning btn-lg" href="/exercises/<%= exercise._id %>/edit">Edit</a>
+						<form id="delete-form" action="/exercises/<%= exercise._id %>?_method=DELETE" method="POST">
+							<button class="btn btn-danger btn-lg">Delete</button>
+						</form>
+					<% } %>
+				</div>
+
+			</div><!-- Steps Card End-->
+
+			<!-- MISC Card End-->
+			<div id="miscCard" class="card hidethat">
+
+				<div class="card-body">
+					<h5 class="card-title"><%= exercise.name %></h5>
+					<p class="card-text"><%= exercise.description %></p>
+					<p class="card-text">MISC</p>
+					<% if(currentUser && exercise.author.username == (currentUser.username) && currentUser.toggleEditMode){ %>
+						<a class="btn btn-warning btn-lg" href="/exercises/<%= exercise._id %>/edit">Edit</a>
+						<form id="delete-form" action="/exercises/<%= exercise._id %>?_method=DELETE" method="POST">
+							<button class="btn btn-danger btn-lg">Delete</button>
+						</form>
+					<% } %>
+				</div>
+
+			</div><!-- MISC Card End-->
+
 		</div>
 	</div>
 </div>
+<script>
+	//switch toggles for menu
+    $('#stepSwitch').click(function () {
+		$("#overviewSwitch").removeClass("active");
+		$("#miscSwitch").removeClass("active");
 
+		$("#overviewCard").addClass("hidethat");
+		$("#miscCard").addClass("hidethat");
+
+		$("#stepCard").removeClass("hidethat");
+		$("#stepSwitch").addClass("active");
+    });
+	$('#overviewSwitch').click(function () {
+		$("#miscSwitch").removeClass("active");
+		$("#stepSwitch").removeClass("active");
+
+		$("#miscCard").addClass("hidethat");
+		$("#stepCard").addClass("hidethat");
+
+		$("#overviewCard").removeClass("hidethat");
+		$("#overviewSwitch").addClass("active");
+    });
+	$('#miscSwitch').click(function () {
+		$("#overviewSwitch").removeClass("active");
+		$("#stepSwitch").removeClass("active");
+
+		$("#overviewCard").addClass("hidethat");
+		$("#stepCard").addClass("hidethat");
+
+		$("#miscCard").removeClass("hidethat");
+		$("#miscSwitch").addClass("active");
+    });
+
+</script>
 
 
 <% include ../partials/footer %>
