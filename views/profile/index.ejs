@@ -1,8 +1,6 @@
 <% include ../partials/header %>
 
 <script>
-
-
 	const reorderArray = (event, originalArray) => {
 	  const movedItem = originalArray.filter((item, index) => index === event.oldIndex);
 	  const remainingItems = originalArray.filter((item, index) => index !== event.oldIndex);

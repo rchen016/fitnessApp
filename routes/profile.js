@@ -35,17 +35,34 @@ router.post("/exercises/:id/profile",function(req,res){
 			return res.render("profile/index");
 		}
 		else{
+			console.log("quick check");
+			for(var i=0; i<req.user.savedWorkouts.length;i++){
+				console.log("Checking... ", req.user.savedWorkouts[i].value.name);
+			}
 			//check if exercise already exist in profile array
-			for(var i=0; i<req.user.savedExercises.length; i++){
-				if(req.user.savedExercises[i].name == foundExercises.name){
+			console.log("Check Unique ", req.user);
+			// for(var i=0; i<req.user.savedExercises.length; i++){
+			// 	if(req.user.savedExercises[i].name == foundExercises.name){
+			// 		console.log("Not Uni: ",req.user.savedExercises[i].name);
+			// 		console.log("==Not Uni: ",foundExercises.name);
+			// 		isUnique = false;
+			// 	}
+			// }
+			for(var i=0; i<req.user.savedWorkouts.length; i++){
+				if(req.user.savedWorkouts[i].value.name == foundExercises.name){
+					//console.log("Not Uni: ",req.user.savedExercises[i].name);
+				//	console.log("==Not Uni: ",foundExercises.name);
+					console.log("Not Unique");
 					isUnique = false;
 				}
 			}
 			if(isUnique){
+				console.log("UNIQUE!");
 				req.user.savedWorkouts.push({workoutNum:req.body.workoutNum, value:foundExercises });
-				req.user.savedExercises.push(foundExercises);
+				//req.user.savedExercises.push(foundExercises);
 				req.user.save();
-				console.log(req.user.savedWorkouts);
+				res.redirect("/exerciseCategory");
+				return;
 			}
 			res.redirect("/exerciseCategory");
 		}
@@ -65,6 +82,7 @@ router.delete("/exercises/:id/profile", function(req,res){
 		else{
 			for(var i=0;i<req.user.savedWorkouts.length;i++){
 				if(foundExercises.name == req.user.savedWorkouts[i].name){
+					console.log("Found Ex and now deleting...");
 					req.user.savedExercises.splice(i,1);
 					req.user.save();
 					res.render("profile/index");
@@ -76,9 +94,16 @@ router.delete("/exercises/:id/profile", function(req,res){
 				console.log(found.value.name);
 				console.log(counter);
 				if(foundExercises.name == found.value.name){
+					console.log("Let's Slice...");
+					console.log("SW: " + req.user.savedWorkouts.length);
 					req.user.savedWorkouts.splice(counter,1);
+					req.user.savedExercises.splice(counter,1);
+					console.log("SW Left: " + req.user.savedWorkouts.length);
 					req.user.save();
-					res.render("profile/index");
+					//res.render("profile/index");
+					console.log("Redirecting to Profile");
+					res.redirect("back");
+					return;
 				}
 				counter = counter + 1;
 			});

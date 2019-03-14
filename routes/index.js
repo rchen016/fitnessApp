@@ -24,7 +24,7 @@ router.get("/register",function(req,res){
 	res.render("register");
 });
 
-//render register page
+//render disclaimer  page
 router.get("/disclaimer",function(req,res){
 	res.render("disclaimer");
 });
