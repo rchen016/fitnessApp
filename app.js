@@ -21,7 +21,7 @@ var exerciseRoutes    = require("./routes/exercises"),
 	exerciseCatRoutes = require("./routes/exerciseCategory");
 
 var url = process.env.DATABASEURL || "mongodb://localhost/exercise_app";
-mongoose.connect(url);
+mongoose.connect(url,{useNewUrlParser: true});
 
 app.use(bodyParser.urlencoded({extended:true}));
 app.set("view engine","ejs");
